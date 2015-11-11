@@ -1,6 +1,6 @@
 # 631_Ecomm_Project
 ECommerce group project
-Team Members: Srikanth, Vamsi, Adithya
+Team Members: Srikanth Lavu, Vamsi A, Adithya
 
 Hope these links might be of some help:
 
