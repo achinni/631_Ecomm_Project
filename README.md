@@ -2,6 +2,8 @@
 ECommerce group project
 Team Members: Srikanth Lavu, Vamsi A, Adithya
 
+Website Name: e-Mart
+
 Hope these links might be of some help:
 
 https://desktop.github.com/
