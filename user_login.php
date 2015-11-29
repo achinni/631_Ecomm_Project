@@ -10,7 +10,7 @@
 
 	if($num_rows == 1)
 	{
-		header("Location: ../../html/search.html");
+		header("Location: search.html");
 // 		echo "
 // 		<html>
 // 		<head>

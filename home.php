@@ -31,7 +31,7 @@
 				<span class='glyphicon glyphicon-cog'></span> Admin<strong class="caret"></strong>
 			</a>
 			<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-				<form method="post" action="../../php/admin_login.php" accept-charset="UTF-8">
+				<form method="post" action="admin_login.php" accept-charset="UTF-8">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="username">
 					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
 					<button class="btn btn-default" type="submit" id="sign-in">Enter</button><br/>&nbsp;
@@ -51,7 +51,7 @@
 	</div>
 	<div class="col-sm-5">
 		<h2> Login </h2>
-		<form action="../../php/user_login.php" method="post" class="form-horizontal" role="form">
+		<form action="user_login.php" method="post" class="form-horizontal" role="form">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="username">Username:</label>
 				<div class="col-sm-6">
@@ -69,7 +69,7 @@
 				  <button type="submit" class="btn btn-default">Sign-In</button>
 				  &emsp;<a>Forgot Password</a>
 				  <br/><br/>
-				  <button class = "btn-lg btn-success">Continue as Guest</button>
+				  <button type = "button" class = "btn-lg btn-success">Continue as Guest</button>
 				</div>
 			</div>
 		</form>
