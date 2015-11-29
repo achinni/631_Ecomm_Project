@@ -44,7 +44,7 @@
     </div>
   </div>
 </nav> 
-  
+ 
 <!-- body -->
 <div class='container-fluid'>
 	<div class='jumbotron'>
