@@ -1,4 +1,5 @@
 <?php
+	include 'connection.php';
 	session_start();
 	$_SESSION['user']="Guest";
 ?>
@@ -34,7 +35,7 @@
 				<form method="post" action="admin_login.php" accept-charset="UTF-8">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="username">
 					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-					<button class="btn btn-default" type="submit" id="sign-in">Enter</button><br/>&nbsp;
+					<button class="btn btn-warning" type="submit" id="sign-in">Enter</button><br/>&nbsp;
 				</form>
 			</div>
 		</li>
@@ -53,7 +54,7 @@
 	
 	<div class="col-md-4">
 		<h2> <span class="col-md-offset-4"><span class="glyphicon glyphicon-user"></span> Login</span> </h2> <br/>
-		<form action="user_login.php" method="post" class="form-horizontal" role="form">
+		<form action="#" method="post" class="form-horizontal" role="form">
 			<div class="form-group">
 				<label class="control-label col-md-3" for="username">Username:</label>
 				<div class="col-md-8">
@@ -68,52 +69,54 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-offset-3 col-md-10">
-				  <button type="submit" class="btn btn-default">Sign-In</button>
+				  <button type="submit" name = "loginsubmit" class="btn btn-info">Sign-In</button>
 				  &emsp;<a>Forgot Password</a>
 				  <br/><br/>
 				</div>
 				
 			</div>
 		</form>
+		<div class="col-md-offset-3 col-md-8">
+		<p id = "nouser" class="text-danger"></p>
+		</div>
+		<?php
+			if(isset($_POST['loginsubmit']))
+			{
+				$user = $_POST['username'];
+				$password = $_POST['pwd'];
+				$query = "select email,password from users where email='".$user."' and password='".$password."'";
+				$result = mysqli_query($connection, $query);
+				$num_rows = mysqli_num_rows($result);
+				
+				if($num_rows == 1)
+				{
+					header("Location:search.php");
+				}
+				else
+				{
+					echo "
+						<script type = 'text/javascript'>
+						document.getElementById('nouser').innerHTML = 'User Not Found, Please Try Again..';
+						</script>
+					";
+				}
+			}
+		?>
 	</div>
 	
 	<div class="col-md-5">
 		<h2> <span class="col-md-offset-4"> Sign up </span> </h2> <br/>
 		<form class="form-horizontal" role="form">
 		  <div class="form-group">
-			<label class="control-label col-md-3" for="username">Username:</label>
-			<div class="col-md-7">
-			  <input type="text" class="form-control" id="username" placeholder="Enter username">
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label class="control-label col-md-3" for="pwd">Password:</label>
-			<div class="col-md-7">
-			  <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label class="control-label col-md-3" for="repwd">Re-type Password:</label>
-			<div class="col-md-7">
-			  <input type="password" class="form-control" id="repwd" placeholder="Re-type password">
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label class="control-label col-md-3" for="fname">First Name:</label>
-			<div class="col-md-7">
-			  <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label class="control-label col-md-3" for="lname">Last Name:</label>
-			<div class="col-md-7">
-			  <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+			<label class="control-label col-md-3" for="email">Email:</label>
+			<div class="col-md-6">
+			  <input type="text" class="form-control" id="email" placeholder="Enter Email Address">
 			</div>
 		  </div>
 		  
 		  <div class="form-group">
-			<div class="col-md-offset-3 col-md-8">
-			  <button type="submit" class="btn btn-default">Submit</button>
+			<div class="col-md-offset-6 col-md-7">
+			  <button type="submit" class="btn btn-info">Register</button>
 			</div>
 		  </div>
 		</form>
