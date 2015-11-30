@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2015 at 09:44 PM
+-- Generation Time: Nov 30, 2015 at 11:48 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -106,6 +106,7 @@ CREATE TABLE `reviews` (
 
 CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
+  `username` varchar(40) NOT NULL,
   `password` varchar(30) NOT NULL,
   `fname` varchar(30) NOT NULL,
   `lname` varchar(20) NOT NULL,
@@ -128,8 +129,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`email`, `password`, `fname`, `lname`, `dob`, `phone`, `street`, `city`, `state`, `zip`, `pcardtype`, `pcardno`, `pcardexp`, `scardtype`, `scardno`, `scardexp`, `status`) VALUES
-('slavu', '123456', 'Srikanth', 'Lavu', '1988-10-23', NULL, '1467, Gregory Street', 'Ypsilanti', 'Michigan', '48197', 'VISA', '1234567890123456', '12/15', NULL, NULL, NULL, 'a');
+INSERT INTO `users` (`email`, `username`, `password`, `fname`, `lname`, `dob`, `phone`, `street`, `city`, `state`, `zip`, `pcardtype`, `pcardno`, `pcardexp`, `scardtype`, `scardno`, `scardexp`, `status`) VALUES
+('slavu1@emich.edu', 'slavu', '123456', 'Srikanth', 'Lavu', '1988-10-23', NULL, '1467, Gregory Street', 'Ypsilanti', 'Michigan', '48197', 'VISA', '1234567890123456', '12/2015', NULL, NULL, NULL, 'a');
 
 --
 -- Indexes for dumped tables
@@ -169,7 +170,7 @@ ALTER TABLE `reviews`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`email`);
+ ADD PRIMARY KEY (`email`,`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
