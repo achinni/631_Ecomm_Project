@@ -20,15 +20,12 @@
       <ul class='nav navbar-nav'>
         <li class='active'><a href='home.php'>HOME</a></li>
       </ul>
-      <ul class='nav navbar-nav navbar-right'>
-		<li><a href='#'><span class='glyphicon glyphicon-cog'></span> Admin</a></li>
-      </ul>
     </div>
   </div>
 </nav>
   
 <!-- body -->
-	<p> Welcome </p>
+	<p> Please Register </p>
 <!-- footer -->
   
 </body>
