@@ -8,19 +8,17 @@
 	<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 </head>
 <body>
-	<iframe src = "header.html" scrolling="no" frameborder="0" width="100%"> </iframe>
-	<div class='container-fluid text-center'>
+	<?php include 'header.php' ?>
 	<div class='row content'>
 		<div class='col-md-2 sidenav' style='background-color:#D8D8D7'>
-			<iframe src = "leftSidebar.html" scrolling="no" frameborder="0"> </iframe>
+			<?php include 'leftSidebar.php' ?>
 		</div>
 		<div class='col-md-8 text-left'>
-			<iframe src = "mainContent.html" scrolling="no" frameborder="0"> </iframe>
+			<?php include 'mainContent.php' ?>
 		</div>
 		<div class='col-md-2 sidenav' style='background-color:#D8D8D7'>
-			<iframe src = "rightSidebar.html" scrolling="no" frameborder="0"> </iframe>
+			<?php include 'rightSidebar.php' ?>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

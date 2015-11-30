@@ -11,6 +11,16 @@
 <body>
 
 <!-- LEFT SIDEBAR -->
+<div class="dropdown">
+	<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">BRANDS
+	<span class="caret"></span></button>
+	<ul class="dropdown-menu">
+	  <li><a href="#">APPLE</a></li>
+	  <li><a href="#">SAMSUNG</a></li>
+	  <li><a href="#">SONY</a></li>
+	</ul>
+</div>
+  
 <ul style='list-style-type:none' class='list-group'>
 	<li class='list-group-item'>
 		<div>
