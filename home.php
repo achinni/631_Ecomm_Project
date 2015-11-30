@@ -10,8 +10,12 @@
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" />
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js'></script>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>  
+  <script src='http://www.eyecon.ro/bootstrap-datepicker/js/google-code-prettify/prettify.js'></script>
 </head>
 <body>
 
@@ -39,8 +43,8 @@
 				</form>
 			</div>
 		</li>
+		<!-- end of login pop up -->
       </ul>	
-      <!-- end of login pop up -->
     </div>
   </div>
 </nav> 
@@ -155,12 +159,12 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input readonly id="regemail" name="email" type="text" placeholder="Enter Email Address" class="form-control input-md">
+					<input id="regemail" name="email" type="text" placeholder="Enter Email Address" class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
 				  <div class="col-md-4">
-					<input readonly id="regusername" name="username" type="text" placeholder="Enter Username" class="form-control input-md">
+					<input id="regusername" name="username" type="text" placeholder="Enter Username" class="form-control input-md">
 				  </div>
 				</div>
 				
@@ -197,9 +201,18 @@
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="dob">Date of Birth</label>  
-				  <div class="col-md-4">
-					<input id="dob" name="dob" type="date" placeholder="MM/DD/YYYY" class="form-control input-md">
+				  <div class="col-md-4 date">
+					<div class="input-group input-append date" id="datePicker" data-date-format="mm/dd/yyyy">
+						<input id="dob" type="text" class="form-control" name="date" placeholder="MM/DD/YYYY"/>
+						<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+					</div> 
 				  </div>
+				  
+				  <script type = "text/javascript">
+					$(function(){
+						$('#datePicker').datepicker('show');
+					});
+				  </script>
 				  
 				  <label class="col-md-2 control-label" for="phone">Phone</label>  
 				  <div class="col-md-4">
@@ -300,7 +313,7 @@
 				
 			</div>
 			<div class="modal-footer">
-			  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">
+			  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
 			  Close</button>
 			</div>
 		  </div>
