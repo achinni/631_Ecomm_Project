@@ -1,24 +1,39 @@
+<?php
+	include 'connection.php';
+	session_start();
+?>
 <!DOCTYPE html>
+<html lang='en'>
 <head>
-	<title> Header Frame </title>
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-	<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+  <title>Search Products</title>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 </head>
 <body>
-	<?php include 'header.php' ?>
-	<div class='row content'>
-		<div class='col-md-2 sidenav' style='background-color:#D8D8D7'>
-			<?php include 'leftSidebar.php' ?>
-		</div>
-		<div class='col-md-8 text-left'>
-			<?php include 'mainContent.php' ?>
-		</div>
-		<div class='col-md-2 sidenav' style='background-color:#D8D8D7'>
-			<?php include 'rightSidebar.php' ?>
-		</div>
-	</div>
+
+<!-- header -->
+<nav class='navbar navbar-inverse'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <a class='navbar-brand' href='home.php'>e-Mart</a>
+    </div>
+    <div>
+      <ul class='nav navbar-nav'>
+        <li class='active'><a href='home.php'>HOME</a></li>
+      </ul>
+      <ul class='nav navbar-nav navbar-right'>
+		<li><a href='#'><span class='glyphicon glyphicon-cog'></span> Admin</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<!-- body -->
+	<p> Welcome <?php $_SESSION['user'] ?></p>
+<!-- footer -->
+  
 </body>
 </html>
