@@ -141,7 +141,8 @@
 		<p id = "exist" class="text-danger"></p>
 		<p id = "available" class="text-success"> username & Email available, Please register below
 		<br/><button type="button" data-toggle="modal" data-target="#registernow" class="btn btn-success col-md-offset-2 col-md-6">Register</button>
-		
+		</p>
+		</div>
 		<!-- registration popup-->
 		<div class="modal fade" id="registernow" role="dialog">
 		<div class="modal-dialog modal-lg">
@@ -151,9 +152,9 @@
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
 			  <h4 class="modal-title">Complete the details below</h4>
 			</div>
+			
 			<div class="modal-body">
-			  
-			  <form class="form-horizontal" action="#" method="post">
+			  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
 				<fieldset>
 				
 				<div class="form-group">
@@ -264,64 +265,58 @@
 
 				<div class="form-group">
 				  <div class="col-md-offset-4">
-				  <button type="submit" name = "registersubmit" class="btn btn-success">Sign-Up</button>
-				  <span class="col-md-offset-1"><button type="reset" class="btn btn-danger">Reset</button></span
+				  <button form="reg" type="submit" name = "rsubmit" class="btn btn-success">Sign-Up</button>
+				  <span class="col-md-offset-1"><button type="reset" class="btn btn-danger">Reset</button></span>
 				  </div>
 				</div>
 
 				</fieldset>
 				</form>
-				
-				<?php
-				if(isset($_POST['registersubmit']))
+			</div>
+			
+			<?php
+			
+				if(isset($_POST['rsubmit']))
 				{
-					$email = $_POST['regemail'];
-					$user = $_POST['regusername'];
-					$password = $_POST['pwd'];
-					$fname = $_POST['fname'];
-					$lname = $_POST['lname'];
-					$dob = $_POST['dob'];
-					$phone = $_POST['phone'];
-					$street = $_POST['street'];
-					$city = $_POST['city'];
-					$state = $_POST['state'];
-					$zip = $_POST['zip'];
-					$pctype = $_POST['pctype'];
-					$pcno = $_POST['pcno'];
-					$pcexp = $_POST['pcexp'];
-					$sctype = $_POST['sctype'];
-					$scno = $_POST['scno'];
-					$scexp = $_POST['scexp'];
+// 					$email = $_POST['regemail'];
+// 					$user = $_POST['regusername'];
+// 					$password = $_POST['pwd'];
+// 					$fname = $_POST['fname'];
+// 					$lname = $_POST['lname'];
+// 					$dob1 = $_POST['dob'];
+// 					$phone = $_POST['phone'];
+// 					$street = $_POST['street'];
+// 					$city = $_POST['city'];
+// 					$state = $_POST['state'];
+// 					$zip = $_POST['zip'];
+// 					$pctype = $_POST['pctype'];
+// 					$pcno = $_POST['pcno'];
+// 					$pcexp = $_POST['pcexp'];
+// 					$sctype = $_POST['sctype'];
+// 					$scno = $_POST['scno'];
+// 					$scexp = $_POST['scexp'];
+// 					
+// 					$dob = substr($dob1,6,4)."/".substr($dob1,3,2)."/".substr($dob1,0,2);
+// 					
+// 					$query = "insert into users values
+// 					('".$email."', '".$user."','".$fname."', '".$lname."', ".$dob.", 
+// 					'".$phone."','".$street."', '".$city."', '".$state."', '".$zip."', 
+// 					'".$pctype."', '".$pcno."', '".$pcexp."','".$sctype."', '".$scno."', '".$scexp."','a')";
+// 					$result = mysqli_query($connection, $query);
 					
-					$query = "insert into users values
-					('".$email."', '".$user."','".$fname."', '".$lname."', '".$dob."', 
-					'".$phone."','".$street."', '".$city."', '".$state."', ".$zip.", 
-					".$pctype.", '".$pcno."', '".$pcexp."',".$sctype.", '".$scno."', '".$scexp."','a')";
-					$result = mysqli_query($connection, $query);
-				
-					if($result)
-					{
-						$_SESSION['user']=$user;
-						header("Location:producthome.php");
-					}
-					else
-					{
-						echo "Error: " . $query . "<br>" . $conn->error;
-					}
+					header("Location: insert.php");
 				}
 			?>
-				
-			</div>
+			
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
 			  Close</button>
 			</div>
 		  </div>
-	  
 		</div>
 	  </div>
 	  <!-- end of registration popup-->
-	  </p>
+	  
 		<script type = "text/javascript">
 		document.getElementById("available").style.visibility = "hidden";
 		</script>
@@ -367,7 +362,6 @@
 				}
 			}
 		?>
-	</div>
 	
 	<div class="col-md-3">
 		<div class="col-md-offset-0 col-md-12">
