@@ -154,7 +154,7 @@
 			</div>
 			
 			<div class="modal-body">
-			  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+			  <form id="reg" action="insert.php" method="post" class="form-horizontal" role="form">
 				<fieldset>
 				
 				<div class="form-group">
@@ -273,41 +273,7 @@
 				</fieldset>
 				</form>
 			</div>
-			
-			<?php
-			
-				if(isset($_POST['rsubmit']))
-				{
-// 					$email = $_POST['regemail'];
-// 					$user = $_POST['regusername'];
-// 					$password = $_POST['pwd'];
-// 					$fname = $_POST['fname'];
-// 					$lname = $_POST['lname'];
-// 					$dob1 = $_POST['dob'];
-// 					$phone = $_POST['phone'];
-// 					$street = $_POST['street'];
-// 					$city = $_POST['city'];
-// 					$state = $_POST['state'];
-// 					$zip = $_POST['zip'];
-// 					$pctype = $_POST['pctype'];
-// 					$pcno = $_POST['pcno'];
-// 					$pcexp = $_POST['pcexp'];
-// 					$sctype = $_POST['sctype'];
-// 					$scno = $_POST['scno'];
-// 					$scexp = $_POST['scexp'];
-// 					
-// 					$dob = substr($dob1,6,4)."/".substr($dob1,3,2)."/".substr($dob1,0,2);
-// 					
-// 					$query = "insert into users values
-// 					('".$email."', '".$user."','".$fname."', '".$lname."', ".$dob.", 
-// 					'".$phone."','".$street."', '".$city."', '".$state."', '".$zip."', 
-// 					'".$pctype."', '".$pcno."', '".$pcexp."','".$sctype."', '".$scno."', '".$scexp."','a')";
-// 					$result = mysqli_query($connection, $query);
-					
-					header("Location: insert.php");
-				}
-			?>
-			
+
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
 			  Close</button>
