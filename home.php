@@ -1,7 +1,7 @@
 <?php
 	include 'connection.php';
 	session_start();
-	$_SESSION['user']="Guest";
+	$_SESSION['user']='Guest';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -30,20 +30,46 @@
         <li class='active'><a href='home.php'><span class="glyphicon glyphicon-home"></span> HOME</a></li>
       </ul>
       <ul class='nav navbar-nav navbar-right'>
-		<!-- login popup for admin -->
+		<!-- login dropdown for admin -->
 		<li class="dropdown">
 			<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-				<span class='glyphicon glyphicon-cog'></span> Admin<strong class="caret"></strong>
+				<span class='glyphicon glyphicon-cog'></span> Admin <strong class="caret"></strong>
 			</a>
 			<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-				<form method="post" action="admin_login.php" accept-charset="UTF-8">
-					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="username">
-					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-					<button class="btn btn-warning" type="submit" id="sign-in">Enter</button><br/>&nbsp;
+				<form method="post" action="#" accept-charset="UTF-8">
+					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="ausername">
+					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="pwd">
+					<button class="btn btn-warning" name = "adminsubmit" type="submit" id="sign-in">Enter</button><br/>&nbsp;
 				</form>
+				
+					<?php
+					if(isset($_POST['adminsubmit']))
+					{
+						$user = $_POST['ausername'];
+						$password = $_POST['pwd'];
+						$query = "select username,password from admin where username='".$user."' and password='".$password."'";
+						$result = mysqli_query($connection, $query);
+						$num_rows = mysqli_num_rows($result);
+						
+						if($num_rows == 1)
+						{
+							$_SESSION['user'] = $user;
+							header("Location:adminpage.php");
+						}
+						else
+						{
+							echo "
+								<script type = 'text/javascript'>
+								alert('Admin Not Found, Try Again');
+								</script>
+							";
+						}
+					}
+				?>
+				
 			</div>
 		</li>
-		<!-- end of login pop up -->
+		<!-- end of admin login -->
       </ul>	
     </div>
   </div>
@@ -62,7 +88,7 @@
 			<div class="form-group">
 				<label class="control-label col-md-3" for="username">Login ID:</label>
 				<div class="col-md-8">
-				  <input type="text" class="form-control" name="username" id="username" placeholder="Enter username / Email">
+				  <input type="text" class="form-control" name="uusername" id="username" placeholder="Enter username / Email">
 				</div>
 			</div>
 			<div class="form-group">
@@ -86,20 +112,26 @@
 		<?php
 			if(isset($_POST['loginsubmit']))
 			{
-				$user = $_POST['username'];
+				$user = $_POST['uusername'];
 				$password = $_POST['pwd'];
 				$query1 = "select username,password from users where username='".$user."' and password='".$password."'";
 				$result1 = mysqli_query($connection, $query1);
 				$num_rows1 = mysqli_num_rows($result1);
 				
-				$query2 = "select email,password from users where email='".$user."' and password='".$password."'";
+				$query2 = "select username,email,password from users where email='".$user."' and password='".$password."'";
 				$result2 = mysqli_query($connection, $query2);
 				$num_rows2 = mysqli_num_rows($result2);
 				
 				if($num_rows1 == 1 || $num_rows2 == 1)
 				{
+					if($num_rows2 == 1)
+					{
+						$res = mysqli_fetch_assoc($result2);
+						$user = $res['username'];
+					}
 					$_SESSION['user']=$user;
 					header("Location:producthome.php");
+					
 				}
 				else
 				{
@@ -137,12 +169,16 @@
 			</div>
 		  </div>
 		</form>
-		<div class="col-md-offset-2 col-md-8">
+		<div class="col-md-offset-3 col-md-6">
 		<p id = "exist" class="text-danger"></p>
 		<p id = "available" class="text-success"> username & Email available, Please register below
-		<br/><button type="button" data-toggle="modal" data-target="#registernow" class="btn btn-success col-md-offset-2 col-md-6">Register</button>
+		<br/><button type="button" data-toggle="modal" data-target="#registernow" class="btn btn-success col-md-offset-3 col-md-4">Register</button>
 		</p>
+		<script type = "text/javascript">
+		document.getElementById("available").style.visibility = "hidden";
+		</script>
 		</div>
+		
 		<!-- registration popup-->
 		<div class="modal fade" id="registernow" role="dialog">
 		<div class="modal-dialog modal-lg">
@@ -204,7 +240,7 @@
 				  <label class="col-md-2 control-label" for="dob">Date of Birth</label>  
 				  <div class="col-md-4 date">
 					<div class="input-group input-append date" id="datePicker" data-date-format="mm/dd/yyyy">
-						<input id="dob" type="text" class="form-control" name="date" placeholder="MM/DD/YYYY"/>
+						<input id="dob" type="text" class="form-control" name="dob" placeholder="MM/DD/YYYY Or MMDDYYYY"/>
 						<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 					</div> 
 				  </div>
@@ -282,10 +318,6 @@
 		</div>
 	  </div>
 	  <!-- end of registration popup-->
-	  
-		<script type = "text/javascript">
-		document.getElementById("available").style.visibility = "hidden";
-		</script>
 		</div>
 		<?php
 			if(isset($_POST['registercheck']))
@@ -301,7 +333,15 @@
 				$result2 = mysqli_query($connection, $query2);
 				$num_rows2 = mysqli_num_rows($result2);
 				
-				if($num_rows1 == 1)
+				if($num_rows1 == 1 && $num_rows2 == 1)
+				{
+					echo "
+						<script type = 'text/javascript'>
+						document.getElementById('exist').innerHTML = 'email & username already exists, Please change both..';
+						</script>
+					";
+				}
+				elseif($num_rows1 == 1)
 				{
 					echo "
 						<script type = 'text/javascript'>
@@ -328,15 +368,15 @@
 				}
 			}
 		?>
-	
 	<div class="col-md-3">
 		<div class="col-md-offset-0 col-md-12">
 			<h2> Guest Mode </h2> <br/>
-			<button type = "button" class = "btn-lg btn-success"> Proceed to Shopping </button>
+			<a href="producthome.php"><button type = "button" class = "btn btn-lg btn-success"> Proceed to Shopping </button>
 		</div>
 	</div>
 	
 </div>
+
 
   
   <!-- footer -->

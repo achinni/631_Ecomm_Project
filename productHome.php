@@ -1,6 +1,18 @@
 <?php
 	include 'connection.php';
 	session_start();
+	
+	if($_SESSION['user']!='Guest')
+	{
+		$user_query = "select * from users where username='".$_SESSION['user']."'";
+		$user_result = mysqli_query($connection, $user_query);
+		$user_details = mysqli_fetch_assoc($user_result);
+	}
+	else
+	{
+		$user_details['fname'] = 'Guest';
+		$user_details['lname'] = '';
+	}
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -32,7 +44,7 @@
 </nav>
   
 <!-- body -->
-	<p> Welcome <?php $_SESSION['user'] ?></p>
+	<p> Welcome <?php echo $user_details['fname']." ".$user_details['lname']; ?></p>
 <!-- footer -->
   
 </body>

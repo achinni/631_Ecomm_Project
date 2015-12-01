@@ -20,10 +20,11 @@
 	$scno = $_POST['scno'];
 	$scexp = $_POST['scexp'];
 	
-	$dob = date("Y-m-d", strtotime($dob1));
+	$dob2 = str_replace("/","",$dob1);
+	$dob = substr($dob2,4,4)."-".substr($dob2,0,2)."-".substr($dob2,2,2);
 	
 	$query = "insert into users values
-	('".$email."', '".$user."', '".$password."', '".$fname."', '".$lname."', ".$dob.", 
+	('".$email."', '".$user."', '".$password."', '".$fname."', '".$lname."', '".$dob."', 
 	'".$phone."','".$street."', '".$city."', '".$state."', '".$zip."', 
 	'".$pctype."', '".$pcno."', '".$pcexp."','".$sctype."', '".$scno."', '".$scexp."','a')";
 	$result = mysqli_query($connection, $query);
@@ -31,7 +32,7 @@
 	if($result)
 	{	
 		$_SESSION['user'] = $user;
-		header("Location: producthome.php");
+		header("Location:producthome.php");
 	}
 	
 	else
