@@ -26,14 +26,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">e-Mart</a>
+      <a class="navbar-brand" href="Welcome.php">e-Mart</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav pull-left">
           <li><a href="#section1">Overview</a></li>
           <li><a href="#section2">Who we are</a></li>
           <li><a href="#section3">Products</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li class="pull-right"><a href="home.php">
+          <button type="button" class="btn btn-link">Continue to website
+          &nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
+          </button></a></li>
         </ul>
       </div>
     </div>

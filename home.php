@@ -23,7 +23,7 @@
 <nav class='navbar navbar-inverse'>
   <div class='container-fluid'>
     <div class='navbar-header'>
-      <a class='navbar-brand' href='home.php'>e-Mart</a>
+      <a class='navbar-brand' href='Welcome.php'>e-Mart</a>
     </div>
     <div>
       <ul class='nav navbar-nav'>
@@ -155,6 +155,7 @@
 			  value="<?php if(isset($_POST['email'])) { echo htmlentities ($_POST['email']); }?>">
 			</div>
 		  </div>
+		  
 		  <div class="form-group">
 			<label class="control-label col-md-3" for="rusername">username:</label>
 			<div class="col-md-6">
@@ -172,7 +173,7 @@
 		<div class="col-md-offset-3 col-md-6">
 		<p id = "exist" class="text-danger"></p>
 		<p id = "available" class="text-success"> username & Email available, Please register below
-		<br/><button type="button" data-toggle="modal" data-target="#registernow" class="btn btn-success col-md-offset-3 col-md-4">Register</button>
+		<br/><button type="button" data-toggle="modal" data-target="#registernow" class="btn btn-success col-md-offset-2 col-md-5">Register</button>
 		</p>
 		<script type = "text/javascript">
 		document.getElementById("available").style.visibility = "hidden";
