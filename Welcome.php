@@ -37,7 +37,7 @@
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li class="pull-right"><a href="home.php">
-          <button type="button" class="btn btn-link">Continue to website
+          <button type="button" class="btn btn-link">Start Shopping
           &nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
           </button></a></li>
         </ul>

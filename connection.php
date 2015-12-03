@@ -1,8 +1,8 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "root";
+$servername = "emart631group0.cfcsugvslzjq.us-west-2.rds.amazonaws.com:3306";
+$username = "master631";
+$password = "COSC_631!";
 $dbname = "631_group0";
 
 // Create connection
