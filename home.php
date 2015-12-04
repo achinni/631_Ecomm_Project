@@ -38,7 +38,7 @@
 			<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 				<form method="post" action="#" accept-charset="UTF-8">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="ausername">
-					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="pwd">
+					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="apwd">
 					<button class="btn btn-warning" name = "adminsubmit" type="submit" id="sign-in">Enter</button><br/>&nbsp;
 				</form>
 				
@@ -46,7 +46,7 @@
 					if(isset($_POST['adminsubmit']))
 					{
 						$user = $_POST['ausername'];
-						$password = $_POST['pwd'];
+						$password = $_POST['apwd'];
 						$query = "select username,password from admin where username='".$user."' and password='".$password."'";
 						$result = mysqli_query($connection, $query);
 						$num_rows = mysqli_num_rows($result);
@@ -87,7 +87,7 @@
 		<form data-toggle="validator" action="#" method="post" class="form-horizontal" role="form">
 			<div class="form-group has-feedback">
 				<label class="control-label col-md-3" for="username">Login ID:</label>
-				<div class="col-md-8 input-group">
+				<div class="col-md-8">
 				  <input type="text" class="form-control" name="uusername" id="username" placeholder="Enter username / Email">
 				</div>
 			</div>
