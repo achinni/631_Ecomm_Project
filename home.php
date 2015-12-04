@@ -10,8 +10,8 @@
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" />
-
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css' />
+  
   <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js'></script>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>  
@@ -32,13 +32,14 @@
       <ul class='nav navbar-nav navbar-right'>
 		<!-- login dropdown for admin -->
 		<li class="dropdown">
+		
 			<a class="dropdown-toggle" href="#" data-toggle="dropdown">
 				<span class='glyphicon glyphicon-cog'></span> Admin <strong class="caret"></strong>
 			</a>
 			<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 				<form method="post" action="#" accept-charset="UTF-8">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Admin name" id="username" name="ausername">
-					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="pwd">
+					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="apwd">
 					<button class="btn btn-warning" name = "adminsubmit" type="submit" id="sign-in">Enter</button><br/>&nbsp;
 				</form>
 				
@@ -46,7 +47,7 @@
 					if(isset($_POST['adminsubmit']))
 					{
 						$user = $_POST['ausername'];
-						$password = $_POST['pwd'];
+						$password = $_POST['apwd'];
 						$query = "select username,password from admin where username='".$user."' and password='".$password."'";
 						$result = mysqli_query($connection, $query);
 						$num_rows = mysqli_num_rows($result);
@@ -87,14 +88,18 @@
 		<form data-toggle="validator" action="#" method="post" class="form-horizontal" role="form">
 			<div class="form-group has-feedback">
 				<label class="control-label col-md-3" for="username">Login ID:</label>
-				<div class="col-md-8 input-group">
-				  <input type="text" class="form-control" name="uusername" id="username" placeholder="Enter username / Email">
+				<div class="col-md-8">
+				  <input type="text" class="form-control" name="uusername" id="username" 
+				  placeholder="Enter username / Email" required>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group has-feedback">
 				<label class="control-label col-md-3" for="pwd">Password:</label>
 				<div class="col-md-8">
-				  <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter password">
+				  <input type="password" class="form-control" name="pwd" id="pwd" 
+				  data-toggle="validator" placeholder="Enter password" required>
+				  <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -103,35 +108,6 @@
 				  &emsp;<a>Forgot Password</a>
 				  <br/><br/>
 				</div>
-<!-- 			<div class="form-group">
-          <label for="inputName" class="control-label">Name</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
-        </div>
-        <div class="form-group has-feedback">
-          <label for="inputTwitter" class="control-label">Twitter</label>
-          <div class="input-group">
-            <span class="input-group-addon">@</span>
-            <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
-          </div>
-          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-          <span class="help-block with-errors">Hey look, this one has feedback icons!</span>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail" class="control-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
-          <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="control-label">Password</label>
-          <div class="form-inline row">
-            <div class="form-group col-sm-6">
-              <input type="password" data-toggle="validator" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
-              <span class="help-block">Minimum of 6 characters</span>
-            </div>
-            <div class="form-group col-sm-6">
-              <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-              <div class="help-block with-errors"></div>
-            </div>	 -->
 			</div>
 		</form>
 		<div class="col-md-offset-3 col-md-8">
@@ -175,23 +151,26 @@
 	
 	<div class="col-md-5">
 		<h2> <span class="col-md-offset-4"> Sign up </span> </h2> <br/>
-		<form class="form-horizontal" action="#" method="post" role="form">
-		  <div class="form-group">
+		<form data-toggle="validator" class="form-horizontal" action="#" method="post" role="form">
+		  <div class="form-group has-feedback">
 			<label class="control-label col-md-3" for="remail">Email:</label>
 			<div class="col-md-6">
-			  <input type="text" class="form-control" name="email" id="remail" placeholder="Enter Email Address"
-			  value="<?php if(isset($_POST['email'])) { echo htmlentities ($_POST['email']); }?>">
+			  <input type="email" class="form-control" name="email" id="remail" placeholder="Enter Email Address"
+			  value="<?php if(isset($_POST['email'])) { echo htmlentities ($_POST['email']); }?>"
+			  data-error="Email address is invalid" required>
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		  </div>
 		  
-		  <div class="form-group">
+		  <div class="form-group has-feedback">
 			<label class="control-label col-md-3" for="rusername">username:</label>
 			<div class="col-md-6">
 			  <input type="text" class="form-control" name="username" id="rusername" placeholder="Choose a username"
-			  value="<?php if(isset($_POST['username'])) { echo htmlentities ($_POST['username']); }?>">
+			  value="<?php if(isset($_POST['username'])) { echo htmlentities ($_POST['username']); }?>" required>
+			  <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		  </div>
-		  
+	  
 		  <div class="form-group">
 			<div class="col-md-offset-3 col-md-7">
 			  <button type="submit" name="registercheck" class="btn btn-info">Continue</button>
@@ -409,6 +388,10 @@
 
   
   <!-- footer -->
-  
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://1000hz.github.io/bootstrap-validator/assets/js/application.js"></script>  
 </body>
 </html>
