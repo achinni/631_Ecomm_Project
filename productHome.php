@@ -25,26 +25,12 @@
   <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 </head>
 <body>
-
 <!-- header -->
-<nav class='navbar navbar-inverse'>
-  <div class='container-fluid'>
-    <div class='navbar-header'>
-      <a class='navbar-brand' href='home.php'>e-Mart</a>
-    </div>
-    <div>
-      <ul class='nav navbar-nav'>
-        <li class='active'><a href='home.php'>HOME</a></li>
-      </ul>
-      <ul class='nav navbar-nav navbar-right'>
-		<li><a href='#'><span class='glyphicon glyphicon-cog'></span> Admin</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
-<!-- body -->
+<?php include "header.php" ?>  
+
 <div class='container'>
+
+<!-- body -->
 	</div class='row'>
 		<p> Welcome <?php echo $user_details['fname']." ".$user_details['lname']; ?></p>
 		<div class='col-md-3'><?php include "leftSidebar.php" ?></div>

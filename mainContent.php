@@ -20,17 +20,6 @@ include 'connection.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-	<title> Main Content </title>
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-	<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-</head>
-<body>
 <!-- BODY -->
 	<div class='container-fluid'>
 		<div id ="form">
@@ -77,44 +66,44 @@ include 'connection.php';
 		  else
 		  {
 		  while($row=mysqli_fetch_assoc($result))
-				{
-				echo "
+				{?>
 					<table class='table table-striped' width = '500px'>
 						<thead style='background-color:#CCE6FF'>
 						  <tr>
-							<th>".$row['pid']."</th>
-							<th>".$row['make']."</th>
+							<th><?php echo $row['pid'] ?></th>
+							<th><?php echo $row['make'] ?></th>
 							<th>STYLE</th>
 						  </tr>
 						</thead>
 						<tbody>
 						  <tr>
 							<td width = '40%'>
-								<img src = ".$row['imagePath']." width = '100%' alt = ".$row['pid']."></img> 
+								<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
 								 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
-								<button type='button' class='btn btn-success' id='".$row['pid']."' onClick='cart(this.id)'>Add to Cart</button>
+								<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
+								<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
 							</td>
 							<td width = '30%'>
 								<ul class='list-group'>
-								  <li class='list-group-item'>MAKE: &nbsp ".$row['make']."</li>
-								  <li class='list-group-item'>MODEL: &nbsp ".$row['model']."</li>
-								  <li class='list-group-item'>YEAR: &nbsp ".$row['year']."</li>
-  								  <li class='list-group-item'>PRICE: &nbsp $".$row['price']."</li>
+								  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
+								  <li class='list-group-item'>MODEL: &nbsp <?php echo $row['model'] ?></li>
+								  <li class='list-group-item'>YEAR: &nbsp <?php echo $row['year'] ?></li>
+  								  <li class='list-group-item'>PRICE: &nbsp <?php echo $row['price'] ?></li>
 								</ul>
 							</td>
 							<td width = '30%'>
 								<ul class='list-group'>
-								  <li class='list-group-item'>CATEGORY: &nbsp ".$row['category']."</li>
-								  <li class='list-group-item'>SUB CATEGORY: &nbsp ".$row['subcategory']."</li>
-								  <li class='list-group-item'>SELLER: &nbsp ".$row['seller']."</li>
-  								  <li class='list-group-item'>STOCK: &nbsp ".$row['stock']."</li>
+								  <li class='list-group-item'>CATEGORY: &nbsp <?php echo $row['category'] ?></li>
+								  <li class='list-group-item'>SUB CATEGORY: &nbsp <?php echo $row['subcategory'] ?></li>
+								  <li class='list-group-item'>SELLER: &nbsp <?php echo $row['seller'] ?></li>
+  								  <li class='list-group-item'>STOCK: &nbsp <?php echo $row['stock'] ?></li>
 								</ul>
 							</td>
 						  </tr>
 						</tbody>
 					  </table>
 					<br/>
-					";
+					<?php
 				}
 		    }
 			?>
@@ -126,6 +115,3 @@ include 'connection.php';
 
   </div>
 <!-- body ends -->
-  
-</body>
-</html>
