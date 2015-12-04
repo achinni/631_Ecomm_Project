@@ -32,11 +32,54 @@
 	if($result)
 	{	
 		$_SESSION['user'] = $user;
+
+		require("PHPMailer-master/PHPMailerAutoload.php");
+		ini_set("SMTP","ssl://smtp.gmail.com"); 
+		ini_set("smtp_port","465");
+		$mail = new PHPMailer();
+		$mail->SMTPAuth = true;
+		$mail->Host = "smtp.gmail.com"; // SMTP server
+		$mail->SMTPSecure = "ssl";
+		$mail->Username = "test.emartshop@gmail.com"; 
+		$mail->Password = "emart@631";
+		$mail->Port = "465";
+		$mail->isSMTP();
+		$mail->AddAddress($email);
+		$mail->Subject  = "e-Mart Registration Successful";
+		$mail->Body     = 
+		
+		"
+		You have successfully registered at e-Mart.com
+		In order to login please visit http://localhost:81/home.php
+		Your login details are as follows:
+		------------------------
+		username :".$user."
+		password :".$password."
+		------------------------
+		
+		Keep your login details safe.
+		
+		regards,
+		Team e-Mart
+		";
+		$mail->WordWrap = 200;
+		if(!$mail->Send()) {
+		echo 'Message was not sent!.';
+		echo 'Mailer error: ' . $mail->ErrorInfo;
+		} else {
+		echo  //Fill in the document.location thing
+		'<script type="text/javascript">
+								if(confirm("Your mail has been sent"))
+								document.location = "/";
+				</script>';
+		}
+		
+		
 		header("Location:producthome.php");
 	}
 	
 	else
 	{
-		echo "Error: " .$query;
+		echo "Error: " .$connection->error;
 	}
 ?>

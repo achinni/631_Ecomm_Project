@@ -244,12 +244,12 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="pwd">Password</label>  
 				  <div class="col-md-4">
-					<input id="pwd" name="pwd" type="password" placeholder="Enter Password" class="form-control input-md">
+					<input id="rpwd" name="pwd" type="password" placeholder="Enter Password" class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="rpwd">Re-Type Password</label>  
 				  <div class="col-md-4">
-					<input id="rpwd" name="rpwd" type="password" placeholder="Re-Type your Password" class="form-control input-md">
+					<input id="rrpwd" name="rpwd" type="password" placeholder="Re-Type your Password" class="form-control input-md">
 				  </div>
 				</div>
 				
@@ -277,16 +277,16 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="address">Address</label>  
 				  <div class="col-md-4">
-					<input id="address" name="street" type="text" placeholder="Enter House No., Street" class="form-control input-md">
+					<input id="street" name="street" type="text" placeholder="Enter House No., Street" class="form-control input-md">
 				  </div>
 				  <span class="col-md-2">
-					<input id="address" name="city" type="text" placeholder="Enter City" class="form-control input-md">
+					<input id="city" name="city" type="text" placeholder="Enter City" class="form-control input-md">
 				  </span>
 				  <span class="col-md-2">
-					<input id="address" name="state" type="text" placeholder="Enter State" class="form-control input-md">
+					<input id="state" name="state" type="text" placeholder="Enter State" class="form-control input-md">
 				  </span>
 				  <span class="col-md-2">
-					<input id="address" name="zip" type="text" placeholder="Zip Code" class="form-control input-md">
+					<input id="zip" name="zip" type="text" placeholder="Zip Code" class="form-control input-md">
 				  </span>
 				</div>
   
@@ -296,7 +296,12 @@
 					<input id="pcard" name="pcno" type="text" placeholder="Card Number" class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
-					<input id="pcard" name="pctype" type="text" placeholder="Card Type" class="form-control input-md">
+					<select id="pcard" name="pctype" type="text" placeholder="Card Type" class="form-control input-md">
+					<option> VISA </option>
+					<option> Master </option>
+					<option> AMEX </option>
+					<option> Discover </option>
+					</select>
 				  </div>
 				  <div class="col-md-3">
 					<input id="pcard" name="pcexp" type="text" placeholder="Expiry (MM/YYYY)" class="form-control input-md">
