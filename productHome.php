@@ -44,8 +44,15 @@
 </nav>
   
 <!-- body -->
-	<p> Welcome <?php echo $user_details['fname']." ".$user_details['lname']; ?></p>
+<div class='container'>
+	</div class='row'>
+		<p> Welcome <?php echo $user_details['fname']." ".$user_details['lname']; ?></p>
+		<div class='col-md-3'><?php include "leftSidebar.php" ?></div>
+		<div class='col-md-6'><?php include "mainContent.php" ?></div>
+		<div class='col-md-3'><?php include "rightSidebar.php" ?></div>
+	</div>
 <!-- footer -->
-  
+	<div class = 'row'><?php include "footer.php" ?></div>
+</div>
 </body>
 </html>
