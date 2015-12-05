@@ -59,7 +59,7 @@
 		
 		Keep your login details safe.
 		
-		regards,
+		Regards,
 		Team e-Mart
 		";
 		$mail->WordWrap = 200;
