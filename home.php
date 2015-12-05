@@ -1,7 +1,7 @@
 <?php
 	include 'connection.php';
 	session_start();
-	if($_SESSION['user']!='Guest')
+	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
 		header('Location:producthome.php');
 	else
 		$_SESSION['user']='Guest';
