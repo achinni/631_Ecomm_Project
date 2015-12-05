@@ -2,6 +2,8 @@
 include 'connection.php';
 	session_start();
 	$uname = $_SESSION['user'];
+	$pageno = 1;
+	$ino = 0;
 	
 	// if(empty($_SESSION['glass'])){
 // 	$_SESSION['glass']=array();
@@ -64,8 +66,30 @@ include 'connection.php';
 	  }
 	  else
 	  {
-	  while($row=mysqli_fetch_assoc($result))
-			{?>
+	  	$pageno = ceil($count/10); ?>
+	  	<ul class="nav nav-pills">
+  		<?php for($i = 1; $i <= $pageno; $i++)
+  		{ ?>
+  			<li><a href='#page<?php echo $i?>'>Page <?php echo $i ?></a></li>
+		<?php } ?>
+		</ul>
+		<div class="tab-content">
+	  	<?php 
+	  		$ino = 0;
+	  		$pn = 1;
+	  		$tot = 1;
+	  		while($row=mysqli_fetch_assoc($result))
+			{
+				if($pn == 1 && $ino == 0){ ?>
+					<div id="page1" class="tab-pane fade in active">
+				<?php } ?>
+				<!-- 
+<?php if($ino == 1)
+				{ ?>
+					<div id="page<?php echo $pn ?>" class="tab-pane fade"> 
+				<?php }
+			?>
+ -->
 				<table class='table table-striped' width = '500px'>
 					<thead style='background-color:#CCE6FF'>
 					  <tr>
@@ -103,7 +127,20 @@ include 'connection.php';
 				  </table>
 				<br/>
 				<?php
+				if($ino == 5 || ($tot == $count))
+				{
+					echo "</div>";
+					$ino = 0;
+					$pn++; 
+					if(!($tot == $count)){
+					?>
+					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
+				<?php }
+				}
+			$ino++;
+			$tot++;
 			}
 		}
 		?>
+		</div>
 <!-- body ends -->
