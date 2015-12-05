@@ -16,7 +16,7 @@
 						<tr>
 						<div class= 'row'>
 							<div class='col-md-4'>
-								<th class="text-center">Product</th>
+								<th>Product</th>
 							</div>
 							<div class='col-md-2'>
 								<th class="text-center">Price</th>
@@ -27,20 +27,19 @@
 					<tbody>
 						<tr>
 							<td data-th="Product">
-								<h4 class="nomargin">Product 1</h4>
+								<h5 class="nomargin">Product 1</h5>
 								<p>Quis aute iure reprehenderit in </p>
 							</td>
 							<td data-th="Price">$1099.99</td>
 						</tr>
+						<div id="cartrow">
+						
+						</div>
 					</tbody>
 					<tfoot>
-						<tr class="visible-xs">
-							<td class="text-center"><strong>Total 1.99</strong></td>
-						</tr>
 						<tr>
-							<td><a href="#" class="btn btn-success btn-block">Checkout</a></td>
-							<td class="hidden-md text-right"><strong>Total:&emsp; $1.99</strong></td>
-							
+							<td colspan="2"> <h4 class="text-center text-danger">Total = $1099.99</h4>
+							<a href="#" class="btn btn-success btn-block">Checkout</a></td>
 						</tr>
 					</tfoot>
 				</table>

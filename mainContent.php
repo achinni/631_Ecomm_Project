@@ -22,6 +22,7 @@ include 'connection.php';
 // 	}
 
 ?>
+<script src='addcart.js' type = 'text/javascript'></script>
 
 <!-- BODY -->
 	<div id ="form">
@@ -98,11 +99,19 @@ include 'connection.php';
 					<tbody>
 					  <tr>
 						<td width = '40%'>
-							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
+							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
-							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
-							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
+							<button type='button' class='btn btn-success' id= '<?php echo $row['pid'] ?>'>Add to cart</button>
+							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
 						</td>
+						<script type = 'text/javascript'>
+							var prod_id = "<?php echo $row['pid'] ?>";
+							$(document).ready(function(){
+								$("#prod_id").click(function(){
+									alert("The paragraph was clicked.");
+								});
+							});
+						</script>
 						<td width = '30%'>
 							<ul class='list-group'>
 							  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
