@@ -1,5 +1,5 @@
 <!-- header -->
-<nav class='navbar navbar-inverse'>
+<nav class='navbar navbar-inverse' style='margin-bottom:0'>
   <div class='container-fluid'>
     <div class='navbar-header'>
       <a class='navbar-brand' href='welcome.php'>e-Mart</a>

@@ -24,13 +24,7 @@ include 'connection.php';
 ?>
 
 <!-- BODY -->
-	<div id ="form">
-		<form action="productHome.php" method="post" enctype="multipart/form-data">
-			<input type="text" name="query" placeholder="Enter product description"/>
-			<input type="submit" name="search" value="search" />
-		</form>  
-		</div>
-	<?php
+<?php
 	if(isset($_POST['search']))
 	  {
 		$param = $_POST['query'];
@@ -68,10 +62,12 @@ include 'connection.php';
 	  else
 	  {
 	  	$pageno = ceil($count/ $noProdPage); ?>
-	  	<ul class="nav nav-pills">
-  		<?php for($i = 1; $i <= $pageno; $i++)
+	  	<ul class="nav nav-pills red">
+  		<?php?> 
+  			<li class='active'><a data-toggle="pill" href='#page1'><span class='badge'> 1 </span></a></li>
+  		<?php for($i = 2; $i <= $pageno; $i++)
   		{ ?>
-  			<li><a data-toggle="pill" href='#page<?php echo $i?>'>Page <?php echo $i ?></a></li>
+  			<li><a data-toggle="pill" href='#page<?php echo $i?>'><span class='badge'> <?php echo $i ?></span></a></li>
 		<?php } ?>
 		</ul>
 		<div class="tab-content">
@@ -88,7 +84,7 @@ include 'connection.php';
 					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
 				<?php } ?>
 				<table class='table table-striped' width = '500px'>
-					<thead style='background-color:#CCE6FF'>
+					<thead style='background-color:#ffb266'>
 					  <tr>
 						<th><?php echo $row['pid'] ?></th>
 						<th><?php echo $row['make'] ?></th>
@@ -101,7 +97,7 @@ include 'connection.php';
 							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
-							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
+							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= <?php echo $row['pid'] ?>>Detailed View</button>
 						</td>
 						<td width = '30%'>
 							<ul class='list-group'>
