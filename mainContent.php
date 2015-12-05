@@ -75,21 +75,17 @@ include 'connection.php';
 		</ul>
 		<div class="tab-content">
 	  	<?php 
-	  		$ino = 0;
+	  		$ino = 1;
 	  		$pn = 1;
 	  		$tot = 1;
 	  		while($row=mysqli_fetch_assoc($result))
 			{
-				if($pn == 1 && $ino == 0){ ?>
+				if($pn == 1 && $ino == 1){ ?>
 					<div id="page1" class="tab-pane fade in active">
 				<?php } ?>
-				<!-- 
-<?php if($ino == 1)
-				{ ?>
+				<?php if($pn > 1 && $ino == 1){ ?>
 					<div id="page<?php echo $pn ?>" class="tab-pane fade"> 
-				<?php }
-			?>
- -->
+				<?php } ?>
 				<table class='table table-striped' width = '500px'>
 					<thead style='background-color:#CCE6FF'>
 					  <tr>
@@ -127,15 +123,11 @@ include 'connection.php';
 				  </table>
 				<br/>
 				<?php
-				if($ino == 5 || ($tot == $count))
+				if($ino == 10 || ($tot >= $count))
 				{
 					echo "</div>";
 					$ino = 0;
 					$pn++; 
-					if(!($tot == $count)){
-					?>
-					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
-				<?php }
 				}
 			$ino++;
 			$tot++;
