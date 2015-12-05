@@ -4,6 +4,7 @@ include 'connection.php';
 	$uname = $_SESSION['user'];
 	$pageno = 1;
 	$ino = 0;
+	$noProdPage = 10;
 	
 	// if(empty($_SESSION['glass'])){
 // 	$_SESSION['glass']=array();
@@ -66,7 +67,7 @@ include 'connection.php';
 	  }
 	  else
 	  {
-	  	$pageno = ceil($count/10); ?>
+	  	$pageno = ceil($count/ $noProdPage); ?>
 	  	<ul class="nav nav-pills">
   		<?php for($i = 1; $i <= $pageno; $i++)
   		{ ?>
@@ -100,7 +101,7 @@ include 'connection.php';
 							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
-							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
+							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
 						</td>
 						<td width = '30%'>
 							<ul class='list-group'>
@@ -121,9 +122,19 @@ include 'connection.php';
 					  </tr>
 					</tbody>
 				  </table>
+				  <div id='prod<?php echo $row['pid'] ?>' class='collapse'>
+				  	<div class="panel panel-warning">
+						<div class="panel-heading"> <?php echo $row['pid'] ?> DESCRIPTION</div>
+						<div class="panel-body"> <?php echo $row['description'] ?></div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading"> <?php echo $row['pid'] ?> REVIEWS</div>
+						<div class="panel-body"> </div>
+					</div>
+				  </div>
 				<br/>
 				<?php
-				if($ino == 10 || ($tot >= $count))
+				if($ino == $noProdPage || ($tot >= $count))
 				{
 					echo "</div>";
 					$ino = 0;
