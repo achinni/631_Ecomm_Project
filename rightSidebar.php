@@ -31,12 +31,6 @@
 								<p>Quis aute iure reprehenderit in </p>
 							</td>
 							<td data-th="Price">$1099.99</td>
-							<td data-th="Quantity">
-							  <div class="col-md-12">
-								<input type="number" class="form-control" value="1">
-							  </div>
-							</td>
-							<td data-th="Subtotal" class="text-right">1.99</td>
 						</tr>
 					</tbody>
 					<tfoot>
@@ -44,8 +38,8 @@
 							<td class="text-center"><strong>Total 1.99</strong></td>
 						</tr>
 						<tr>
-							<td colspan='2'><a href="#" class="btn btn-success btn-block">Checkout</a></td>
-							<td colspan='2' class="hidden-md text-right"><strong>Total:&emsp; $1.99</strong></td>
+							<td><a href="#" class="btn btn-success btn-block">Checkout</a></td>
+							<td class="hidden-md text-right"><strong>Total:&emsp; $1.99</strong></td>
 							
 						</tr>
 					</tfoot>

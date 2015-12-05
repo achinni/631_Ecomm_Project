@@ -2,7 +2,7 @@
 	include 'connection.php';
 	session_start();
 	
-	if($_SESSION['user']!='Guest')
+	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
 	{
 		$user_query = "select * from users where username='".$_SESSION['user']."'";
 		$user_result = mysqli_query($connection, $user_query);

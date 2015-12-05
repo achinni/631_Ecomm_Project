@@ -57,7 +57,7 @@
 
 <div class = "container-fluid">
   <div class="row">
-     <h3> Welcome Srikanth, Adithya and Vamsi </h3>
+     <h3> Welcome Srikanth, Adithya and Vamsi <?php echo $user; ?> </h3>
 	
 	 <div class = "col-md-3">
 		<script>
