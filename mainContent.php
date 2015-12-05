@@ -70,7 +70,7 @@ include 'connection.php';
 	  	<ul class="nav nav-pills">
   		<?php for($i = 1; $i <= $pageno; $i++)
   		{ ?>
-  			<li><a href='#page<?php echo $i?>'>Page <?php echo $i ?></a></li>
+  			<li><a data-toggle="pill" href='#page<?php echo $i?>'>Page <?php echo $i ?></a></li>
 		<?php } ?>
 		</ul>
 		<div class="tab-content">
@@ -79,12 +79,12 @@ include 'connection.php';
 	  		$pn = 1;
 	  		$tot = 1;
 	  		while($row=mysqli_fetch_assoc($result))
-			{
-				if($pn == 1 && $ino == 1){ ?>
+			{?>
+				<?php if($pn == 1 && $ino == 1){ ?>
 					<div id="page1" class="tab-pane fade in active">
 				<?php } ?>
 				<?php if($pn > 1 && $ino == 1){ ?>
-					<div id="page<?php echo $pn ?>" class="tab-pane fade"> 
+					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
 				<?php } ?>
 				<table class='table table-striped' width = '500px'>
 					<thead style='background-color:#CCE6FF'>
