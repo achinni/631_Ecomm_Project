@@ -108,7 +108,8 @@ include 'connection.php';
 							  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
 							  <li class='list-group-item'>MODEL: &nbsp <?php echo $row['model'] ?></li>
 							  <li class='list-group-item'>YEAR: &nbsp <?php echo $row['year'] ?></li>
-							  <li class='list-group-item'>PRICE: &nbsp <?php echo $row['price'] ?></li>
+							  <li class='list-group-item'>PRICE: &nbsp<span class='text-danger'>
+							  $</span> <?php echo $row['price'] ?></li>
 							</ul>
 						</td>
 						<td width = '30%'>

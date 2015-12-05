@@ -29,7 +29,7 @@ $(document).ready(function(){
       <div class="panel-heading">
         <h4 class="panel-title">
           <button type="button" id="arrowbtnbrand" class="btn btn-link" data-toggle="collapse" data-target="#brand">
-      		<span class="glyphicon glyphicon-collapse-down"></span> BRAND
+      		<span class="glyphicon glyphicon-collapse-up"></span> BRAND
 		  </button>
         </h4>
       </div>
@@ -48,7 +48,7 @@ $(document).ready(function(){
       <div class="panel-heading">
         <h4 class="panel-title">
           <button type="button" id="arrowbtncategory" class="btn btn-link" data-toggle="collapse" data-target="#category">
-      		<span class="glyphicon glyphicon-collapse-down"></span> CATEGORY
+      		<span class="glyphicon glyphicon-collapse-up"></span> CATEGORY
 		  </button>
         </h4>
       </div>
@@ -67,7 +67,7 @@ $(document).ready(function(){
       <div class="panel-heading">
         <h4 class="panel-title">
           <button type="button" id="arrowbtnseller" class="btn btn-link" data-toggle="collapse" data-target="#seller">
-      		<span class="glyphicon glyphicon-collapse-down"></span> SELLER
+      		<span class="glyphicon glyphicon-collapse-up"></span> SELLER
 		  </button>
         </h4>
       </div>

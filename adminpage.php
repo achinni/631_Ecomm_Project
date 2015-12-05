@@ -1,6 +1,10 @@
 <?php
 	include 'connection.php';
 	session_start();
+	if($_SESSION['user'] !='631team0')
+		header('Location:home.php');
+	else
+		$user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang='en'>

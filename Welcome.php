@@ -1,7 +1,7 @@
 <?php
 	include 'connection.php';
 	session_start();
-	if($_SESSION['user']!='Guest')
+	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
 		$user = $_SESSION['user'];
 	else
 		$_SESSION['user']='Guest';
