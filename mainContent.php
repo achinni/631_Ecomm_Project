@@ -21,7 +21,6 @@ include 'connection.php';
 ?>
 
 <!-- BODY -->
-	<div class='container-fluid'>
 		<div id ="form">
 			<form action="productHome.php" method="post" enctype="multipart/form-data">
 				<input type="text" name="query" placeholder="Enter product description"/>
@@ -109,9 +108,4 @@ include 'connection.php';
 			?>
 		</div>
 		
-		<!-- 
-<div class='clearfix visible-md'></div>
- -->
-
-  </div>
 <!-- body ends -->

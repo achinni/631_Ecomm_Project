@@ -13,6 +13,4 @@
 	<div class='col-md-12'>
 		<h3> Shopping Cart </h3>
 </div>
-<div class='clearfix visible-md'></div>
-
 <!-- sidebar ends -->
