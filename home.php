@@ -185,12 +185,6 @@
 			</div>
 		  </div>
 		</form>
-		<?php 
-			if(isset($_POST['username'])) 
-				$rusers = htmlentities ($_POST['username']);
-			if(isset($_POST['email'])) 
-				$remails = htmlentities ($_POST['email']); 
-		?>
 		<div class="col-md-offset-3 col-md-6">
 		<p id = "exist" class="text-danger"></p>
 		<p id = "available" class="text-success"> username & Email available, Please register below
@@ -222,25 +216,21 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" placeholder="Enter Email Address" 
-					readonly value="<?php echo $remails; ?>" class="form-control input-md">
+					<input id="regemail" name="email" type="text" placeholder="Enter Email Address" class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
 				  <div class="col-md-4">
-					<input id="regusername" name="username" type="text" placeholder="Enter Username" 
-					readonly value="<?php echo $rusers; ?>" class="form-control input-md">
+					<input id="regusername" name="username" type="text" placeholder="Enter Username" class="form-control input-md">
 				  </div>
 				</div>
 				
-<!-- 
 				<script type="text/javascript">
 					var user = document.getElementById("rusername").value;
 					var email = document.getElementById("remail").value;
 					document.getElementById("regusername").value = user;
 					document.getElementById("regemail").value = email;
 				</script>
- -->
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="fname">First Name</label>  
