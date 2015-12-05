@@ -27,12 +27,11 @@
 <body>
 <!-- header -->
 <?php include "header.php" ?>  
-
+<?php include "headerCustom.php" ?>
 <div class='container-fluid'>
 
 <!-- body -->
 	<div class='row'>
-		<p> Welcome <?php echo $user_details['fname']." ".$user_details['lname']; ?></p>
 		<div class='col-md-2'><?php include "leftSidebar.php" ?></div>
 		<div class='col-md-7'><?php include "mainContent.php" ?></div>
 		<div class='col-md-3'><?php include "rightSidebar.php" ?></div>
