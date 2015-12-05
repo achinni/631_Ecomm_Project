@@ -1,3 +1,12 @@
+<?php
+	include 'connection.php';
+	session_start();
+	if($_SESSION['user']!='Guest')
+		$user = $_SESSION['user'];
+	else
+		$_SESSION['user']='Guest';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

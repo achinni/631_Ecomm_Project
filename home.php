@@ -1,7 +1,10 @@
 <?php
 	include 'connection.php';
 	session_start();
-	$_SESSION['user']='Guest';
+	if($_SESSION['user']!='Guest')
+		header('Location:producthome.php');
+	else
+		$_SESSION['user']='Guest';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -98,7 +101,7 @@
 				<label class="control-label col-md-3" for="pwd">Password:</label>
 				<div class="col-md-8">
 				  <input type="password" class="form-control" name="pwd" id="pwd" 
-				  data-toggle="validator" placeholder="Enter password" required>
+				  data-minlength="6" data-toggle="validator" placeholder="Enter password" required>
 				  <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 			</div>
