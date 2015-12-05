@@ -21,19 +21,19 @@ include 'connection.php';
 ?>
 
 <!-- BODY -->
-		<div id ="form">
-			<form action="productHome.php" method="post" enctype="multipart/form-data">
-				<input type="text" name="query" placeholder="Enter product description"/>
-				<input type="submit" name="search" value="search" />
-			</form>  
-			</div>
-		<?php
-		if(isset($_POST['search']))
-		  {
-			$param = $_POST['query'];
-			$query = "select * from products where make LIKE '%".$param."%' OR pid LIKE '%".$param."%'";
-		  }
-		  // else if(isset($_GET['make']))
+	<div id ="form">
+		<form action="productHome.php" method="post" enctype="multipart/form-data">
+			<input type="text" name="query" placeholder="Enter product description"/>
+			<input type="submit" name="search" value="search" />
+		</form>  
+		</div>
+	<?php
+	if(isset($_POST['search']))
+	  {
+		$param = $_POST['query'];
+		$query = "select * from products where make LIKE '%".$param."%' OR pid LIKE '%".$param."%'";
+	  }
+	  // else if(isset($_GET['make']))
 // 		  {
 // 			  $value = $_GET['make'];
 // 			  $query = "select * from glasses where make='$value'";
@@ -53,59 +53,57 @@ include 'connection.php';
 // 			  $value = $_GET['frameStyle'];
 // 			  $query = "select * from glasses where frameStyle='$value'";
 // 		  }
-		  else{
-			  $query = "select * from products" ;
-		  }
-		  $result = mysqli_query($connection, $query);
-		  $count = mysqli_num_rows($result);
-		  if($count <= 0)
-		  {
-			  echo "<h4 style='padding:15px'>No products found !!!</h4>";
-		  }
-		  else
-		  {
-		  while($row=mysqli_fetch_assoc($result))
-				{?>
-					<table class='table table-striped' width = '500px'>
-						<thead style='background-color:#CCE6FF'>
-						  <tr>
-							<th><?php echo $row['pid'] ?></th>
-							<th><?php echo $row['make'] ?></th>
-							<th>STYLE</th>
-						  </tr>
-						</thead>
-						<tbody>
-						  <tr>
-							<td width = '40%'>
-								<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
-								 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
-								<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
-								<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
-							</td>
-							<td width = '30%'>
-								<ul class='list-group'>
-								  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
-								  <li class='list-group-item'>MODEL: &nbsp <?php echo $row['model'] ?></li>
-								  <li class='list-group-item'>YEAR: &nbsp <?php echo $row['year'] ?></li>
-  								  <li class='list-group-item'>PRICE: &nbsp <?php echo $row['price'] ?></li>
-								</ul>
-							</td>
-							<td width = '30%'>
-								<ul class='list-group'>
-								  <li class='list-group-item'>CATEGORY: &nbsp <?php echo $row['category'] ?></li>
-								  <li class='list-group-item'>SUB CATEGORY: &nbsp <?php echo $row['subcategory'] ?></li>
-								  <li class='list-group-item'>SELLER: &nbsp <?php echo $row['seller'] ?></li>
-  								  <li class='list-group-item'>STOCK: &nbsp <?php echo $row['stock'] ?></li>
-								</ul>
-							</td>
-						  </tr>
-						</tbody>
-					  </table>
-					<br/>
-					<?php
-				}
-		    }
-			?>
-		</div>
-		
+	  else{
+		  $query = "select * from products" ;
+	  }
+	  $result = mysqli_query($connection, $query);
+	  $count = mysqli_num_rows($result);
+	  if($count <= 0)
+	  {
+		  echo "<h4 style='padding:15px'>No products found !!!</h4>";
+	  }
+	  else
+	  {
+	  while($row=mysqli_fetch_assoc($result))
+			{?>
+				<table class='table table-striped' width = '500px'>
+					<thead style='background-color:#CCE6FF'>
+					  <tr>
+						<th><?php echo $row['pid'] ?></th>
+						<th><?php echo $row['make'] ?></th>
+						<th>STYLE</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td width = '40%'>
+							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = <?php echo $row['pid'] ?>></img> 
+							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
+							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Add to cart</button>
+							<button type='button' class='btn btn-success' id= <?php echo $row['pid'] ?> onClick='cart(this.id)'>Detailed View</button>
+						</td>
+						<td width = '30%'>
+							<ul class='list-group'>
+							  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
+							  <li class='list-group-item'>MODEL: &nbsp <?php echo $row['model'] ?></li>
+							  <li class='list-group-item'>YEAR: &nbsp <?php echo $row['year'] ?></li>
+							  <li class='list-group-item'>PRICE: &nbsp <?php echo $row['price'] ?></li>
+							</ul>
+						</td>
+						<td width = '30%'>
+							<ul class='list-group'>
+							  <li class='list-group-item'>CATEGORY: &nbsp <?php echo $row['category'] ?></li>
+							  <li class='list-group-item'>SUB CATEGORY: &nbsp <?php echo $row['subcategory'] ?></li>
+							  <li class='list-group-item'>SELLER: &nbsp <?php echo $row['seller'] ?></li>
+							  <li class='list-group-item'>STOCK: &nbsp <?php echo $row['stock'] ?></li>
+							</ul>
+						</td>
+					  </tr>
+					</tbody>
+				  </table>
+				<br/>
+				<?php
+			}
+		}
+		?>
 <!-- body ends -->

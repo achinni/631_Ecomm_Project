@@ -38,7 +38,7 @@
 		<div class='col-md-2'><?php include "rightSidebar.php" ?></div>
 	</div>
 <!-- footer -->
-	<div class = 'row'><?php include "footer.php" ?></div>
+	<div class='row'><?php include "footer.php" ?></div>
 </div>
 </body>
 </html>
