@@ -1,6 +1,6 @@
 <?php
 	include 'connection.php';
-	session_start();
+	//session_start();
 	if($_SESSION['user'] !='631team0')
 		header('Location:home.php');
 	else
@@ -149,13 +149,204 @@
 		  <p>Lorem ipsum dolor sit amet</p>
 		</div>
 		<div id="inventory" class="tab-pane fade">
-		  <h3>Menu 1</h3>
-		  <p>Ut enim ad minim veniam</p>
+		  <h3>Update Inventory</h3>
+
+		  <br/>
+		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+			<fieldset>
+			
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="pid">Product ID</label>  
+			  <div class="col-md-2">
+				<input id="pid" name="uPid" type="text" placeholder="Product ID" 
+				class="form-control input-md">
+			  </div>
+			  
+ 			  <label class="col-md-2 control-label" for="desc">Description</label>  
+			  <div class="col-md-3">
+				<input id="desc" name="uDesc" type="text" class="form-control input-md" 
+				placeholder="Enter Product Description"></textarea>
+			  </div>
+			
+			  <div class="col-md-2">
+			  <button form="reg" type="submit" name = "uSearch" class="btn btn-success">Search</button>
+			  </div>
+			</div>
+		</fieldset>
+		</form>
+		
+		
+		<?php
+		// and description like '%".$Desc."%'
+		if (isset($_POST['search']))
+		{
+			$Pid = $_POST['uPid'];
+			$Desc = $_POST['uDesc'];
+			$query = "select * from products where pid='".$Pid."'";
+			$result = mysqli_query($connection, $query);
+			//$num_rows = mysqli_num_rows($result);
+			$row = mysqli_fetch_assoc($result);
+			if($result)
+			{ echo"
+			<script type = 'text/javascript'>
+						document.getElementById('notinserted').innerHTML = 'error';
+						</script>";
+			}
+			else
+				echo"<script>alert('ERROR');</script>";
+		}
+		?>
+		
+		
+
+		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+ 		  <fieldset>
+			<div class="form-group">  		  
+			<br/>
+		    <label class="col-md-2 control-label" for="stock">Stock</label> 
+			  <div class="col-md-3">
+				<input id="stock" name="uStock" type="text" placeholder="Enter Available Quantity" class="form-control input-md">
+			  </div>
+			</div>
+
+			<div class="form-group">  		  
+			<br/>
+			  <div class="col-md-offset-5">
+			  <button form="reg" type="submit" name = "UpdateInventory" class="btn btn-success btn-lg">Update</button>
+			  </div>
+			</div>
+		</fieldset>
+		</form>
+
 		</div>
 		<div id="products" class="tab-pane fade">
-		  <h3>Menu 2</h3>
-		  <p>Sed ut perspiciatis unde omnis</p>
+		
+		  <h3>Search a Product</h3>
+		  <br/>
+		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+			<fieldset>
+			
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="pid">Product ID</label>  
+			  <div class="col-md-2">
+				<input id="pid" name="pid" type="text" placeholder="Product ID" 
+				class="form-control input-md">
+			  </div>
+			  
+ 			  <label class="col-md-2 control-label" for="desc">Description</label>  
+			  <div class="col-md-3">
+				<input id="desc" name="desc" type="text" class="form-control input-md" 
+				placeholder="Enter Product Description"></textarea>
+			  </div>
+			
+			  <div class="col-md-2">
+			  <button form="reg" type="submit" name = "search" class="btn btn-success">Search</button>
+			  </div>
+			</div>
+			
+		</fieldset>
+		</form>
+		  
+		<form id="reg" action="#" method="post" class="form-horizontal" role="form">
+		<fieldset>
+			
+		<br />
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="make">Make</label>  
+			  <div class="col-md-3">
+				<input id="make" name="make" type="text" placeholder="Enter Make" 
+				class="form-control input-md">
+			  </div>
+			  
+ 			  <label class="col-md-2 control-label" for="model">Model</label>  
+			  <div class="col-md-3">
+				<input id="model" name="model" type="text" placeholder="Enter Model" class="form-control input-md">
+			  </div>			  
+			</div>
+
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="make">Make</label>  
+			  <div class="col-md-3">
+				<input id="make" name="make" type="text" placeholder="Enter Make" 
+				class="form-control input-md">
+			  </div>
+			  
+ 			  <label class="col-md-2 control-label" for="model">Model</label>  
+			  <div class="col-md-3">
+				<input id="model" name="model" type="text" placeholder="Enter Model" class="form-control input-md">
+			  </div>			  
+			</div>
+
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="year">Year Released</label>  
+			  <div class="col-md-3">
+				<input id="year" name="year" type="text" placeholder="Enter Year Released" class="form-control input-md">
+			  </div>
+			  <label class="col-md-2 control-label" for="seller">Seller</label>  
+			  <div class="col-md-3">
+				<input id="seller" name="seller" type="text" placeholder="Enter Seller Details" class="form-control input-md">
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="desc">Description</label>  
+			  <div class="col-md-8">
+				<textarea id="desc" name="desc" rows="3" class="form-control input-md" 
+				placeholder="Enter Product Description (Up to 200 Characters)"></textarea>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="price">Price</label>  
+			  <div class="col-md-3">
+				<input id="price" name="price" type="text" placeholder="Enter Price" class="form-control input-md">
+			  </div>
+			  <label class="col-md-2 control-label" for="seller">Seller</label>  
+			  <div class="col-md-3">
+				<input id="seller" name="seller" type="text" placeholder="Enter Seller Details" class="form-control input-md">
+			  </div>
+			</div>
+		
+		  
+ 			<div class="form-group">
+			  <label class="col-md-2 control-label" for="category">Category</label>  
+			  <div class="col-md-3">
+				<select id="category" name="category" 
+				class="form-control input-md">
+					<option>Camera</option>
+					<option>Hard Drive</option>
+					<option>Laptop</option>
+					<option>Pendrive</option>
+				</select>
+			  </div>
+
+			  <label class="col-md-2 control-label" for="subcategory">Sub-Category</label>  
+			  <div class="col-md-3">
+				<input id="subcategory" name="subcategory" type="text" placeholder="Enter Sub-Category" 
+				class="form-control input-md">
+			  </div>
+			</div>
+
+ 			<div class="form-group">  
+ 		    <label class="col-md-2 control-label" for="img">Image</label> 
+			  <div class="col-md-3">
+				<input id="img" name="img" type="text" class="input-md">
+			  </div>
+		    <label class="col-md-2 control-label" for="stock">Stock</label> 
+			  <div class="col-md-3">
+				<input id="stock" name="stock" type="text" placeholder="Enter Available Quantity" class="form-control input-md">
+			  </div>
+			</div>
+
+ 			<div class="form-group">  		  
+			  <div class="col-md-offset-5">
+			  <button form="reg" type="submit" name = "UpdateProducts" class="btn btn-success btn-lg">Update</button>
+			  </div>
+			</div>
+		</fieldset>
+		</form>
 		</div>
+
 		<div id="addnew" class="tab-pane fade">
 		  <br/>
 		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
