@@ -1,15 +1,28 @@
 <?php include "connection.php";
+	session_start();
+	if($_SESSION['user']!='Guest')
+	{
+		$user_query = "select * from users where username='".$_SESSION['user']."'";
+		$user_result = mysqli_query($connection, $user_query);
+		$user_details = mysqli_fetch_assoc($user_result);
+	}
+	else
+	{
+		$user_details['fname'] = 'Guest';
+		$user_details['lname'] = '';
+	}
 	$uname = $_SESSION['user'];
 	$queryU = "select * from users
 			  where username = '".$uname."'";
-	$resultU = mysqli_query($conn, $queryU);
+	$resultU = mysqli_query($connection, $queryU);
 	$num_rows = mysqli_num_rows($resultU);
 	$rowU;
 	if($num_rows == 1)
 	{
 		$rowU=mysqli_fetch_assoc($resultU); 
-		$dobtemp = $rowU['dob'];
-		$dob = substr($dobtemp,6,2)."/".substr($dobtemp,8,2)."/".substr($dobtemp,0,4); 
+		$dob1 = $rowU['dob'];
+		$dobtemp = str_replace("-","",$dob1);
+		$dob = substr($dobtemp,4,2)."/".substr($dobtemp,6,2)."/".substr($dobtemp,0,4); 
 	}
 ?>
 <!-- custom header -->
@@ -20,17 +33,6 @@
     <div class='col-md-7'>
         <form role='form' action="productHome.php" class='form-group' method="post" enctype="multipart/form-data">
 		<div id ="form" class='input-group input-group-md'>
-			<div class="dropdown input-group-btn">
-            <button type="button" class='btn btn-default' name="category" data-toggle="dropdown"/></span> CATEGORY <span class="caret"></span></button>
-				<ul class="dropdown-menu">
-					<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
-						$resultC = mysqli_query($connection,$queryC);
-						while($row = mysqli_fetch_array($resultC)){
-							$category = $row['category']; ?>
-							<li><a href="#"><?php echo $category ?></a></li>
-					<?php } ?>
-			  </ul>
-			</div>
 			<input type="text" class='form-control' name="query" placeholder="Enter product description">
 			<div class="input-group-btn">
             <button type="submit" class='btn btn-warning' name="search" value="search" /> <span class="glyphicon glyphicon-search"></span> SEARCH </button>
@@ -44,7 +46,9 @@
 		  <span class="caret"></span></button>
 		  <ul class="dropdown-menu">
 			<li><a href="#">Purchase History</a></li>
-			<li><button data-toggle="modal" data-target="#update">Update Profile</button></li>
+			<?php if($uname != 'Guest') { ?>
+			<li><a data-toggle="modal" href="#update">Update Profile</a></li>
+			<?php } ?>
 			<li><a href="#">Logout</a></li>
 		  </ul>
 		</div>
@@ -65,11 +69,10 @@
 			<div class="modal-body">
 			  <form id="updateUser" action="updateUser.php" method="post" class="form-horizontal" role="form">
 				<fieldset>
-				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" placeholder='<?php echo $rowU['email'] ?>' class="form-control input-md">
+					<input id="regemail" name="email" type="text" placeholder='<?php echo $rowU['email']; ?>' class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
@@ -117,6 +120,7 @@
 					});
 				  </script>
 				  
+
 				  <label class="col-md-2 control-label" for="phone">Phone</label>  
 				  <div class="col-md-4">
 					<input id="phone" name="phone" type="text" placeholder='<?php echo $rowU['phone'] ?>' class="form-control input-md">
@@ -176,24 +180,9 @@
 				  <span class="col-md-offset-1"><button type="reset" class="btn btn-danger">Reset</button></span>
 				  </div>
 				</div>
-
 				</fieldset>
 				</form>
 			</div>
-<!-- 			<?php }} ?> -->
-<!-- 
-			<?php
-			else
- 			{ ?>
- -->
-<!-- 
-				<div class="modal-body">
-					<p>User not found! Might be a guest.</p>
-				</div>
- -->
-<!-- 
-			<?php } ?>
- -->
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
 			  Close</button>
@@ -209,6 +198,7 @@
 		session_destroy();
 		session_start();
 		$_SESSION['user']='Guest';
+
 		header('Location:welcome.php');
 	}
 ?>

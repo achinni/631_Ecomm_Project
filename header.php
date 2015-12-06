@@ -27,6 +27,6 @@
 		session_destroy();
 		session_start();
 		$_SESSION['user']='Guest';
-		header('Location:Welcome.php');
+		header('Location:welcome.php');
 	}
 ?>
