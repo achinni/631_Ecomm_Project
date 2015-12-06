@@ -1,20 +1,5 @@
-<?php
-	include 'connection.php';
-	session_start();
-	
-	if($_SESSION['user']!='Guest')
-	{
-		$user_query = "select * from users where username='".$_SESSION['user']."'";
-		$user_result = mysqli_query($connection, $user_query);
-		$user_details = mysqli_fetch_assoc($user_result);
-	}
-	else
-	{
-		$user_details['fname'] = 'Guest';
-		$user_details['lname'] = '';
-	}
-?>
-<!-- header -->
+<?php include "connection.php" ?>
+<!-- custom header -->
   <div class='container-fluid' style='margin-bottom:10px'>
     <div class='row' style='background-color:#b2cccc'>
      <div style='padding-top:10px'>
@@ -22,6 +7,17 @@
     <div class='col-md-7'>
         <form role='form' action="productHome.php" class='form-group' method="post" enctype="multipart/form-data">
 		<div id ="form" class='input-group input-group-md'>
+			<div class="dropdown input-group-btn">
+            <button type="button" class='btn btn-default' name="category" data-toggle="dropdown"/></span> CATEGORY <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
+						$resultC = mysqli_query($connection,$queryC);
+						while($row = mysqli_fetch_array($resultC)){
+							$category = $row['category']; ?>
+							<li><a href="#"><?php echo $category ?></a></li>
+					<?php } ?>
+			  </ul>
+			</div>
 			<input type="text" class='form-control' name="query" placeholder="Enter product description">
 			<div class="input-group-btn">
             <button type="submit" class='btn btn-warning' name="search" value="search" /> <span class="glyphicon glyphicon-search"></span> SEARCH </button>
