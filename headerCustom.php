@@ -212,6 +212,6 @@
 		session_start();
 		$_SESSION['user']='Guest';
 
-		header('Location:welcome.php');
+		echo "<meta http-equiv='refresh' content='0; url=welcome.php'>";
 	}
 ?>

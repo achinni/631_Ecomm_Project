@@ -20,7 +20,7 @@
 	
 		if($result)
 		{
-			header("Location:adminpage.php");
+			echo "<meta http-equiv='refresh' content='0; url=adminpage.php'>";
 		}
 		else
 		{

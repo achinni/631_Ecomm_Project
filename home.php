@@ -10,7 +10,7 @@
 	$_SESSION['totalqnt'] = 0;
 	
 	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
-		header('Location:productHome.php');
+		echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
 	else
 		$_SESSION['user']='Guest';
 ?>
@@ -66,7 +66,7 @@
 						if($num_rows == 1)
 						{
 							$_SESSION['user'] = $user;
-							header("Location:adminpage.php");
+							echo "<meta http-equiv='refresh' content='0; url=adminpage.php'>";
 						}
 						else
 						{
@@ -150,8 +150,7 @@
 						$user = $res['username'];
 					}
 					$_SESSION['user']=$user;
-					header("Location:producthome.php");
-					
+					echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
 				}
 				else
 				{

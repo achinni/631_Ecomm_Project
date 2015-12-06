@@ -74,8 +74,7 @@
 				</script>';
 		}
 		
-		
-		header("Location:producthome.php");
+		echo "<meta http-equiv='refresh' content='0; url=producthome.php'>";
 	}
 	
 	else

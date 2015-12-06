@@ -1,8 +1,8 @@
 <?php
 	include 'connection.php';
-	//session_start();
-	if($_SESSION['user'] !='631team0')
-		header('Location:home.php');
+	session_start();
+	if($_SESSION['user'] != '631team0')
+		echo "<meta http-equiv='refresh' content='0; url=home.php'>";
 	else
 		$user = $_SESSION['user'];
 ?>
@@ -46,7 +46,7 @@
 				session_destroy();
 				session_start();
 				$_SESSION['user']='Guest';
-				header('Location:welcome.php');
+				echo "<meta http-equiv='refresh' content='0; url=welcome.php'>";
 			}
 		?>
 		</li>
