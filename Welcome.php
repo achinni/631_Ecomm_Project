@@ -62,6 +62,7 @@
 
 <div id="section1" class="container">
   <?php include 'welcomeSlide.php' ?>
+
 </div>
 <div id="section2" class="container-fluid">
   <h1>Who we are</h1>

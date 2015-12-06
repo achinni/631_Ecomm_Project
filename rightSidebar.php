@@ -28,7 +28,8 @@
 		
 					</thead>
 					<tbody id="cartrow">
-						
+<?php					foreach($_SESSION['pid'] as $ex)
+							echo $ex; ?>
 					</tbody>
 					<tfoot>
 						<tr>
