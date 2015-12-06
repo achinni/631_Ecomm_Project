@@ -5,52 +5,18 @@ include 'connection.php';
 	$pageno = 1;
 	$ino = 0;
 	$noProdPage = 10;
-	
-	// if(empty($_SESSION['glass'])){
-// 	$_SESSION['glass']=array();
-// 	}
-// 	if(empty($_SESSION['qnt'])){
-// 		$_SESSION['qnt']=array();
-// 			$_SESSION['qnt'] = 0;
-// 	}
-// 	if(empty($_SESSION['glass_id'])){
-// 		$_SESSION['glass_id']=array();
-// 	}
-// 	if(empty($_SESSION['total'])){	//price
-// 		$_SESSION['total']=array();
-// 		$_SESSION['total'][0]=0;
-// 	}
-
 ?>
 <script src='addcart.js' type = 'text/javascript'></script>
 
 <!-- BODY -->
+<div id='cartdetails'> </div>
+
 <?php
 	if(isset($_POST['search']))
 	  {
 		$param = $_POST['query'];
 		$query = "select * from products where make LIKE '%".$param."%' OR pid LIKE '%".$param."%'";
 	  }
-	  // else if(isset($_GET['make']))
-// 		  {
-// 			  $value = $_GET['make'];
-// 			  $query = "select * from glasses where make='$value'";
-// 		  }
-// 		  else if(isset($_GET['polarized']))
-// 		  {
-// 			  $value = $_GET['polarized'];
-// 			  $query = "select * from glasses where polarized='$value'";
-// 		  }
-// 		  else if(isset($_GET['gender']))
-// 		  {
-// 			  $value = $_GET['gender'];
-// 			  $query = "select * from glasses where gender='$value'";
-// 		  }
-// 		  else if(isset($_GET['frameStyle']))
-// 		  {
-// 			  $value = $_GET['frameStyle'];
-// 			  $query = "select * from glasses where frameStyle='$value'";
-// 		  }
 	  else{
 		  $query = "select * from products" ;
 	  }
@@ -101,11 +67,17 @@ include 'connection.php';
 							<button type='button' class='btn btn-success' id= '<?php echo $row['pid'] ?>'>Add to cart</button>
 							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
 						</td>
+						
 						<script type = 'text/javascript'>
-							var prod_id = "<?php echo $row['pid'] ?>";
 							$(document).ready(function(){
-								$("#prod_id").click(function(){
-									alert("The paragraph was clicked.");
+								$("#"+"<?php echo $row['pid'] ?>").click(function(){
+									document.getElementById('cartdetails').innerHTML =
+									"<?php $_SESSION['pid'][]=$row['pid'] ?>"+
+									"<tr><div class= 'row'><div class='col-md-4'><th>Product</th>"+
+							"</div><div class='col-md-2'><th>Price</th></div></div></tr>";
+									document.getElementById('cartrow').innerHTML += 
+		"<tr><td data-th='Product'><h5 class='nomargin'><?php echo $row['make'].' '.$row['model']; ?></h5>"+
+		"</td><td data-th='Price'><?php echo '$ '.$row['price']; ?></td></tr>";
 								});
 							});
 						</script>

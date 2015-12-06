@@ -1,6 +1,14 @@
 <?php
 	include 'connection.php';
 	session_start();
+	
+	$_SESSION['product']=array();
+	$_SESSION['qnt']=array();
+	$_SESSION['pid']=array();
+	$_SESSION['subtotal']=array();
+	$_SESSION['total'][0]=0;
+	$_SESSION['totalqnt'] = 0;
+	
 	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
 		header('Location:producthome.php');
 	else
