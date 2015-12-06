@@ -1,6 +1,6 @@
 <?php
 	include 'connection.php';
-	//session_start();
+	session_start();
 	if($_SESSION['user'] !='631team0')
 		header('Location:home.php');
 	else
@@ -149,6 +149,7 @@
 		  <p>Lorem ipsum dolor sit amet</p>
 		</div>
 		<div id="inventory" class="tab-pane fade">
+
 		  <h3>Update Inventory</h3>
 
 		  <br/>
@@ -362,8 +363,8 @@
 			</div>
 		</fieldset>
 		</form>
-		</div>
 
+		</div>
 		<div id="addnew" class="tab-pane fade">
 		  <br/>
 		  <form id="reg5" action="#" method="post" class="form-horizontal" role="form">

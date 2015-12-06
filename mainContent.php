@@ -5,22 +5,6 @@ include 'connection.php';
 	$pageno = 1;
 	$ino = 0;
 	$noProdPage = 10;
-	
-	// if(empty($_SESSION['glass'])){
-// 	$_SESSION['glass']=array();
-// 	}
-// 	if(empty($_SESSION['qnt'])){
-// 		$_SESSION['qnt']=array();
-// 			$_SESSION['qnt'] = 0;
-// 	}
-// 	if(empty($_SESSION['glass_id'])){
-// 		$_SESSION['glass_id']=array();
-// 	}
-// 	if(empty($_SESSION['total'])){	//price
-// 		$_SESSION['total']=array();
-// 		$_SESSION['total'][0]=0;
-// 	}
-
 ?>
 <script src='addcart.js' type = 'text/javascript'></script>
 
@@ -33,26 +17,6 @@ include 'connection.php';
 		$param = $_POST['query'];
 		$query = "select * from products where make LIKE '%".$param."%' OR pid LIKE '%".$param."%'";
 	  }
-	  // else if(isset($_GET['make']))
-// 		  {
-// 			  $value = $_GET['make'];
-// 			  $query = "select * from glasses where make='$value'";
-// 		  }
-// 		  else if(isset($_GET['polarized']))
-// 		  {
-// 			  $value = $_GET['polarized'];
-// 			  $query = "select * from glasses where polarized='$value'";
-// 		  }
-// 		  else if(isset($_GET['gender']))
-// 		  {
-// 			  $value = $_GET['gender'];
-// 			  $query = "select * from glasses where gender='$value'";
-// 		  }
-// 		  else if(isset($_GET['frameStyle']))
-// 		  {
-// 			  $value = $_GET['frameStyle'];
-// 			  $query = "select * from glasses where frameStyle='$value'";
-// 		  }
 	  else{
 		  $query = "select * from products" ;
 	  }
