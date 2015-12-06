@@ -23,6 +23,11 @@
   #section1 {padding-top:50px;height:500px;color: #fff; }
   #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
   #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
   </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -35,7 +40,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="Welcome.php">e-Mart</a>
+      <a class="navbar-brand" href="welcome.php">e-Mart</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -56,7 +61,7 @@
 </nav>    
 
 <div id="section1" class="container">
-  <?php include 'Welcome_Slide.php' ?>
+  <?php include 'welcomeSlide.php' ?>
 </div>
 <div id="section2" class="container-fluid">
   <h1>Who we are</h1>

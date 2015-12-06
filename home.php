@@ -10,7 +10,7 @@
 	$_SESSION['totalqnt'] = 0;
 	
 	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
-		header('Location:producthome.php');
+		header('Location:productHome.php');
 	else
 		$_SESSION['user']='Guest';
 ?>

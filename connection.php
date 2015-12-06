@@ -1,5 +1,4 @@
 <?php
-session_start();
 $servername = 'ecomm631.cfcsugvslzjq.us-west-2.rds.amazonaws.com';
 $username = 'master631';
 $password = "COSC_631!";

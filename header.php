@@ -25,6 +25,7 @@
 
 	if(isset($_POST['logout']))
 	{
+		session_unset();
 		session_destroy();
 		session_start();
 		$_SESSION['user']='Guest';
