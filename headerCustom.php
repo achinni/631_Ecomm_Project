@@ -34,6 +34,17 @@
     <div class='col-md-7'>
         <form role='form' action="productHome.php" class='form-group' method="post" enctype="multipart/form-data">
 		<div id ="form" class='input-group input-group-md'>
+			<div class="dropdown input-group-btn">
+            <button type="button" class='btn btn-default' name="category" data-toggle="dropdown"/></span> CATEGORY <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
+						$resultC = mysqli_query($connection,$queryC);
+						while($row = mysqli_fetch_array($resultC)){
+							$category = $row['category']; ?>
+							<li><a href="#"><?php echo $category ?></a></li>
+					<?php } ?>
+			  </ul>
+			</div>
 			<input type="text" class='form-control' name="query" placeholder="Enter product description">
 			<div class="input-group-btn">
             <button type="submit" class='btn btn-warning' name="search" value="search" /> <span class="glyphicon glyphicon-search"></span> SEARCH </button>
@@ -42,17 +53,17 @@
 		</form>  
      </div>
       <div class='col-md-3'>
-    	<div class="dropdown" style='float:right'>
+    	<?php if($uname != 'Guest') { ?>
+		  <div class="dropdown" style='float:right'>
 		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <span class='glyphicon glyphicon-user'></span> My Account
 		  <span class="caret"></span></button>
 		  <ul class="dropdown-menu">
 			<li><a href="#">Purchase History</a></li>
-			<?php if($uname != 'Guest') { ?>
 			<li><a data-toggle="modal" href="#update">Update Profile</a></li>
-			<?php } ?>
 			<li><a href="#">Logout</a></li>
 		  </ul>
 		</div>
+			<?php } ?>
     </div>
     </div>
    </div>
