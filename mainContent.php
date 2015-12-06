@@ -5,11 +5,12 @@ include 'connection.php';
 	$pageno = 1;
 	$ino = 0;
 	$noProdPage = 10;
+	$c = $_SESSION['counter'];
 ?>
-<script src='addcart.js' type = 'text/javascript'></script>
 
 <!-- BODY -->
 <div id='cartdetails'> </div>
+
 
 <?php
 	if(isset($_POST['search']))
@@ -50,6 +51,7 @@ include 'connection.php';
 				<?php if($pn > 1 && $ino == 1){ ?>
 					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
 				<?php } ?>
+		<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
 				<table class='table table-striped' width = '500px'>
 					<thead style='background-color:#ffb266'>
 					  <tr>
@@ -64,23 +66,18 @@ include 'connection.php';
 							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 
-							<button type='button' class='btn btn-success' id= '<?php echo $row['pid'] ?>'>Add to cart</button>
+							<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
 							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
-						</td>
-						
-						<script type = 'text/javascript'>
-							$(document).ready(function(){
-								$("#"+"<?php echo $row['pid'] ?>").click(function(){
-									document.getElementById('cartdetails').innerHTML =
-									"<?php $_SESSION['pid'][]=$row['pid'] ?>"+
-									"<tr><div class= 'row'><div class='col-md-4'><th>Product</th>"+
-							"</div><div class='col-md-2'><th>Price</th></div></div></tr>";
-									document.getElementById('cartrow').innerHTML += 
-		"<tr><td data-th='Product'><h5 class='nomargin'><?php echo $row['make'].' '.$row['model']; ?></h5>"+
-		"</td><td data-th='Price'><?php echo '$ '.$row['price']; ?></td></tr>";
-								});
+							<script>
+							$("#1<?php echo $row['pid']?>").click(function(){
+							document.getElementById("cartdetails").innerHTML = 
+							"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
+								document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
+								$("#1<?php echo $row['pid']?>").attr("disabled",true);
 							});
-						</script>
+							</script>
+						</td>
+
 						<td width = '30%'>
 							<ul class='list-group'>
 							  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
@@ -101,6 +98,8 @@ include 'connection.php';
 					  </tr>
 					</tbody>
 				  </table>
+		</form>
+
 				  <div id='prod<?php echo $row['pid'] ?>' class='collapse'>
 				  	<div class="panel panel-warning">
 						<div class="panel-heading"> <?php echo $row['pid'] ?> DESCRIPTION</div>

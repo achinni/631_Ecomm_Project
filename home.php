@@ -8,6 +8,7 @@
 	$_SESSION['subtotal']=array();
 	$_SESSION['total'][0]=0;
 	$_SESSION['totalqnt'] = 0;
+	$_SESSION['counter'] = 0;
 	
 	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
 		echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
@@ -223,12 +224,14 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" placeholder="Enter Email Address" class="form-control input-md">
+					<input id="regemail" name="email" type="text"
+					readonly placeholder="Enter Email Address" class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
 				  <div class="col-md-4">
-					<input id="regusername" name="username" type="text" placeholder="Enter Username" class="form-control input-md">
+					<input id="regusername" name="username" type="text" placeholder="Enter Username" 
+					readonly class="form-control input-md">
 				  </div>
 				</div>
 				

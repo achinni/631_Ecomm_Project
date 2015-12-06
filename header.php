@@ -2,7 +2,7 @@
 <nav class='navbar navbar-inverse' style='margin-bottom:0'>
   <div class='container-fluid'>
     <div class='navbar-header'>
-      <a class='navbar-brand' href='welcome.php'>e-Mart</a>
+      <a class='navbar-brand' href='Welcome.php'>e-Mart</a>
     </div>
     <div>
       <ul class='nav navbar-nav'>
