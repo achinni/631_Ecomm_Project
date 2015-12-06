@@ -137,14 +137,14 @@
      
      <div class = "col-md-9">
        <ul class="nav nav-tabs nav-justified">
-		<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-		<li><a data-toggle="tab" href="#inventory">Update Inventory</a></li>
-		<li><a data-toggle="tab" href="#products">Update Products</a></li>
-		<li><a data-toggle="tab" href="#addnew">Add New Products</a></li>
+		<li id="home1"><a data-toggle="tab" href="#home">Home</a></li>
+		<li id="inventory1"><a data-toggle="tab" href="#inventory">Update Inventory</a></li>
+		<li id="products1"><a data-toggle="tab" href="#products">Update Products</a></li>
+		<li id="addnew1"><a data-toggle="tab" href="#addnew">Add New Products</a></li>
 	  </ul>
 
 	  <div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
+		<div id="home" class="tab-pane fade">
 		  <h3>HOME</h3>
 		  <p>Lorem ipsum dolor sit amet</p>
 		</div>
@@ -152,7 +152,7 @@
 		  <h3>Update Inventory</h3>
 
 		  <br/>
-		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+		  <form id="reg1" action="#" method="post" class="form-horizontal" role="form">
 			<fieldset>
 			
 			<div class="form-group">
@@ -169,16 +169,42 @@
 			  </div>
 			
 			  <div class="col-md-2">
-			  <button form="reg" type="submit" name = "uSearch" class="btn btn-success">Search</button>
+			  <button form="reg1" type="submit" name = "uSearch" class="btn btn-success">Search</button>
+			  </div>
+			</div>
+		</fieldset>
+		</form>
+		<div class="text-center" id = "stockdisplay"> </div>
+		
+
+		  <form id="reg2" action="#" method="post" class="form-horizontal" role="form">
+ 		  <fieldset>
+			<div class="form-group">  		  
+			<br/>
+		    <label class="col-md-2 control-label" for="stock">New Stock</label> 
+			  <div class="col-md-3">
+				<input id="updstock" name="uStock" type="text" placeholder="Update Quantity" class="form-control input-md">
+			  </div>
+			</div>
+
+			<div class="form-group">  		  
+			<br/>
+			  <div class="col-md-offset-5">
+			  <button form="reg2" type="submit" name = "UpdateInventory" class="btn btn-success btn-lg">Update</button>
 			  </div>
 			</div>
 		</fieldset>
 		</form>
 		
+		<script type = "text/javascript">
+			document.getElementById("reg2").style.visibility = "hidden";
+		</script>
+		
+		</div>
 		
 		<?php
 		// and description like '%".$Desc."%'
-		if (isset($_POST['search']))
+		if (isset($_POST['uSearch']))
 		{
 			$Pid = $_POST['uPid'];
 			$Desc = $_POST['uDesc'];
@@ -187,43 +213,34 @@
 			//$num_rows = mysqli_num_rows($result);
 			$row = mysqli_fetch_assoc($result);
 			if($result)
-			{ echo"
-			<script type = 'text/javascript'>
-						document.getElementById('notinserted').innerHTML = 'error';
-						</script>";
+			{ 
+				echo"
+				<script type = 'text/javascript'>
+				document.getElementById('inventory1').className = 'active';
+				document.getElementById('inventory').className = 'tab-pane fade in active';
+// 				document.getElementById('products1').className = '';
+// 				document.getElementById('products').className = 'tab-pane fade';
+// 				document.getElementById('home1').className = '';
+// 				document.getElementById('home').className = 'tab-pane fade';
+// 				document.getElementById('addnew1').className = '';
+// 				document.getElementById('addnew').className = 'tab-pane fade';
+				
+				document.getElementById('stockdisplay').innerHTML =
+				'Product : ".$row['pid']." - ".$row['make']." ".$row['model']."&emsp;Available Stock : ".$row['stock']."';
+				document.getElementById('reg2').style.visibility = 'visible';
+				</script>
+				";
 			}
 			else
 				echo"<script>alert('ERROR');</script>";
 		}
 		?>
 		
-		
-
-		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
- 		  <fieldset>
-			<div class="form-group">  		  
-			<br/>
-		    <label class="col-md-2 control-label" for="stock">Stock</label> 
-			  <div class="col-md-3">
-				<input id="stock" name="uStock" type="text" placeholder="Enter Available Quantity" class="form-control input-md">
-			  </div>
-			</div>
-
-			<div class="form-group">  		  
-			<br/>
-			  <div class="col-md-offset-5">
-			  <button form="reg" type="submit" name = "UpdateInventory" class="btn btn-success btn-lg">Update</button>
-			  </div>
-			</div>
-		</fieldset>
-		</form>
-
-		</div>
 		<div id="products" class="tab-pane fade">
 		
 		  <h3>Search a Product</h3>
 		  <br/>
-		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+		  <form id="reg3" action="#" method="post" class="form-horizontal" role="form">
 			<fieldset>
 			
 			<div class="form-group">
@@ -240,14 +257,14 @@
 			  </div>
 			
 			  <div class="col-md-2">
-			  <button form="reg" type="submit" name = "search" class="btn btn-success">Search</button>
+			  <button form="reg3" type="submit" name = "search" class="btn btn-success">Search</button>
 			  </div>
 			</div>
 			
 		</fieldset>
 		</form>
 		  
-		<form id="reg" action="#" method="post" class="form-horizontal" role="form">
+		<form id="reg4" action="#" method="post" class="form-horizontal" role="form">
 		<fieldset>
 			
 		<br />
@@ -340,7 +357,7 @@
 
  			<div class="form-group">  		  
 			  <div class="col-md-offset-5">
-			  <button form="reg" type="submit" name = "UpdateProducts" class="btn btn-success btn-lg">Update</button>
+			  <button form="reg4" type="submit" name = "UpdateProducts" class="btn btn-success btn-lg">Update</button>
 			  </div>
 			</div>
 		</fieldset>
@@ -349,7 +366,7 @@
 
 		<div id="addnew" class="tab-pane fade">
 		  <br/>
-		  <form id="reg" action="#" method="post" class="form-horizontal" role="form">
+		  <form id="reg5" action="#" method="post" class="form-horizontal" role="form">
 			<fieldset>
 			
 			<div class="form-group">
@@ -429,7 +446,7 @@
 			
 			<div class="form-group">
 			  <div class="col-md-offset-4">
-			  <button form="reg" type="submit" name = "psubmit" class="btn btn-success">Sign-Up</button>
+			  <button form="reg5" type="submit" name = "psubmit" class="btn btn-success">Sign-Up</button>
 			  <span class="col-md-offset-1"><button type="reset" class="btn btn-danger">Reset</button></span>
 			  </div>
 			</div>
