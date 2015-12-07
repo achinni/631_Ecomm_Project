@@ -7,10 +7,8 @@ include 'connection.php';
 	$noProdPage = 10;
 	$c = $_SESSION['counter'];
 ?>
-
 <!-- BODY -->
 <div id='cartdetails'> </div>
-
 
 <?php
 	if(isset($_POST['search']))
@@ -38,6 +36,7 @@ include 'connection.php';
   			<li><a data-toggle="pill" href='#page<?php echo $i?>'><span class='badge'> <?php echo $i ?></span></a></li>
 		<?php } ?>
 		</ul>
+		<div class='panel-group' id='itemDescription'> <!-- dont use it or mess with it - Adithya -->
 		<div class="tab-content">
 	  	<?php 
 	  		$ino = 1;
@@ -51,57 +50,71 @@ include 'connection.php';
 				<?php if($pn > 1 && $ino == 1){ ?>
 					<div id="page<?php echo $pn?>" class="tab-pane fade"> 
 				<?php } ?>
-		<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
-				<table class='table table-striped' width = '500px'>
-					<thead style='background-color:#ffb266'>
-					  <tr>
-						<th><?php echo $row['pid'] ?></th>
-						<th><?php echo $row['make'] ?></th>
-						<th>STYLE</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <tr>
-						<td width = '40%'>
-							<img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
+				<?php if($ino % 2 != 0) {
+					$prevItem = $row;
+				?>
+				<div class='row'>
+				<div class='col-md-6'>
+				<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
+				<div class="panel panel-warning">
+				  <div class="panel-heading"><?php echo $row['pid'] ?></div>
+				  <div class="panel-body">
+					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
+						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
+						<button type='button' class='btn btn-info' data-parent='#itemDescription' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
+						<script>
+						$("#1<?php echo $row['pid']?>").click(function(){
+						document.getElementById("cartdetails").innerHTML = 
+						"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
+							document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
+							$("#1<?php echo $row['pid']?>").attr("disabled",true);
+						});
+						</script>
+				  </div>
+				</div> <!-- panel ends -->
+				</form>
+				</div> <!-- col-1 ends -->
+				<?php } ?>
+				
+				<?php if($ino % 2 == 0) { ?>
+				<div class='col-md-6'> <!-- col-2 starts -->
+				<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
+				<div class="panel panel-warning">
+				  <div class="panel-heading"><?php echo $row['pid'] ?></div>
+				  <div class="panel-body">
+					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
+							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
+						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
+						<button type='button' class='btn btn-info' data-toggle='collapse' data-parent='#itemDescription' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
+						<script>
+						$("#1<?php echo $row['pid']?>").click(function(){
+						document.getElementById("cartdetails").innerHTML = 
+						"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
+							document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
+							$("#1<?php echo $row['pid']?>").attr("disabled",true);
+						});
+						</script>
+				  </div>
+				</div> <!-- panel ends -->
+				</form>
+				</div> <!-- col-2 ends -->
 
-							<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
-							<button type='button' class='btn btn-success' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
-							<script>
-							$("#1<?php echo $row['pid']?>").click(function(){
-							document.getElementById("cartdetails").innerHTML = 
-							"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
-								document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
-								$("#1<?php echo $row['pid']?>").attr("disabled",true);
-							});
-							</script>
-						</td>
+				<div id='prod<?php echo $prevItem['pid'] ?>' class='col-md-12 panel-collapse collapse'>
+					<div class="panel panel-warning">
+						<div class="panel-heading"> <?php echo $prevItem['pid'] ?> DESCRIPTION</div>
+						<div class="panel-body"> <?php echo $prevItem['description'] ?></div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading"> <?php echo $prevItem['pid'] ?> REVIEWS</div>
+						<div class="panel-body"> </div>
+					</div>
+				  </div>
 
-						<td width = '30%'>
-							<ul class='list-group'>
-							  <li class='list-group-item'>MAKE: &nbsp <?php echo $row['make'] ?></li>
-							  <li class='list-group-item'>MODEL: &nbsp <?php echo $row['model'] ?></li>
-							  <li class='list-group-item'>YEAR: &nbsp <?php echo $row['year'] ?></li>
-							  <li class='list-group-item'>PRICE: &nbsp<span class='text-danger'>
-							  $</span> <?php echo $row['price'] ?></li>
-							</ul>
-						</td>
-						<td width = '30%'>
-							<ul class='list-group'>
-							  <li class='list-group-item'>CATEGORY: &nbsp <?php echo $row['category'] ?></li>
-							  <li class='list-group-item'>SUB CATEGORY: &nbsp <?php echo $row['subcategory'] ?></li>
-							  <li class='list-group-item'>SELLER: &nbsp <?php echo $row['seller'] ?></li>
-							  <li class='list-group-item'>STOCK: &nbsp <?php echo $row['stock'] ?></li>
-							</ul>
-						</td>
-					  </tr>
-					</tbody>
-				  </table>
-		</form>
-
-				  <div id='prod<?php echo $row['pid'] ?>' class='collapse'>
-				  	<div class="panel panel-warning">
+				</div> <!-- row ends -->
+				
+				<div id='prod<?php echo $row['pid'] ?>' class='panel-collapse collapse'>
+					<div class="panel panel-warning">
 						<div class="panel-heading"> <?php echo $row['pid'] ?> DESCRIPTION</div>
 						<div class="panel-body"> <?php echo $row['description'] ?></div>
 					</div>
@@ -109,8 +122,9 @@ include 'connection.php';
 						<div class="panel-heading"> <?php echo $row['pid'] ?> REVIEWS</div>
 						<div class="panel-body"> </div>
 					</div>
-				  </div>
-				<br/>
+				</div>
+				<?php } ?>
+				
 				<?php
 				if($ino == $noProdPage || ($tot >= $count))
 				{
@@ -124,4 +138,5 @@ include 'connection.php';
 		}
 		?>
 		</div>
+		</div> <!-- end item description -->
 <!-- body ends -->
