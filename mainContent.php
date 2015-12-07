@@ -7,6 +7,16 @@ include 'connection.php';
 	$noProdPage = 10;
 	$c = $_SESSION['counter'];
 ?>
+
+<script>
+	$(".btn btn-info").click(function(){
+		$(".col-md-12 collapse").attr('class','col-md-12 collapse');
+	});
+	$(document).click(function(){
+	  $(".col-md-12 collapse").hide();
+});
+</script>
+
 <!-- BODY -->
 <div id='cartdetails'> </div>
 
@@ -36,7 +46,7 @@ include 'connection.php';
   			<li><a data-toggle="pill" href='#page<?php echo $i?>'><span class='badge'> <?php echo $i ?></span></a></li>
 		<?php } ?>
 		</ul>
-		<div class='panel-group' id='itemDescription'> <!-- dont use it or mess with it - Adithya -->
+		<!-- <div class='panel-group' id='itemDescription'> <!~~ dont use it or mess with it - Adithya ~~> -->
 		<div class="tab-content">
 	  	<?php 
 	  		$ino = 1;
@@ -62,7 +72,7 @@ include 'connection.php';
 					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
-						<button type='button' class='btn btn-info' data-parent='#itemDescription' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
+						<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
 						<script>
 						$("#1<?php echo $row['pid']?>").click(function(){
 						document.getElementById("cartdetails").innerHTML = 
@@ -77,7 +87,9 @@ include 'connection.php';
 				</div> <!-- col-1 ends -->
 				<?php } ?>
 				
-				<?php if($ino % 2 == 0) { ?>
+				<?php if($ino % 2 == 0) { 
+					$nextItem = $row;
+				?>
 				<div class='col-md-6'> <!-- col-2 starts -->
 				<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
 				<div class="panel panel-warning">
@@ -86,7 +98,7 @@ include 'connection.php';
 					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
-						<button type='button' class='btn btn-info' data-toggle='collapse' data-parent='#itemDescription' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
+						<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
 						<script>
 						$("#1<?php echo $row['pid']?>").click(function(){
 						document.getElementById("cartdetails").innerHTML = 
@@ -100,7 +112,7 @@ include 'connection.php';
 				</form>
 				</div> <!-- col-2 ends -->
 
-				<div id='prod<?php echo $prevItem['pid'] ?>' class='col-md-12 panel-collapse collapse'>
+				<div id='prod<?php echo $prevItem['pid'] ?>' class='col-md-12 collapse'>
 					<div class="panel panel-warning">
 						<div class="panel-heading"> <?php echo $prevItem['pid'] ?> DESCRIPTION</div>
 						<div class="panel-body"> <?php echo $prevItem['description'] ?></div>
@@ -111,9 +123,7 @@ include 'connection.php';
 					</div>
 				  </div>
 
-				</div> <!-- row ends -->
-				
-				<div id='prod<?php echo $row['pid'] ?>' class='panel-collapse collapse'>
+				<div id='prod<?php echo $row['pid'] ?>' class='col-md-12 collapse'>
 					<div class="panel panel-warning">
 						<div class="panel-heading"> <?php echo $row['pid'] ?> DESCRIPTION</div>
 						<div class="panel-body"> <?php echo $row['description'] ?></div>
@@ -123,6 +133,20 @@ include 'connection.php';
 						<div class="panel-body"> </div>
 					</div>
 				</div>
+				</div> <!-- row ends -->
+
+				<script>
+					$("#<?php echo $prevItem['pid'] ?>").click(function(){
+						$("#prod<?php echo $nextItem['pid'] ?>").attr('class','col-md-12 collapse');
+					});
+				</script>
+								
+				<script>
+					$("#<?php echo $nextItem['pid'] ?>").click(function(){
+						$("#prod<?php echo $prevItem['pid'] ?>").attr('class','col-md-12 collapse');
+					});
+				</script>
+				
 				<?php } ?>
 				
 				<?php
@@ -138,5 +162,5 @@ include 'connection.php';
 		}
 		?>
 		</div>
-		</div> <!-- end item description -->
+	<!-- 	</div>  --><!-- end item description -->
 <!-- body ends -->
