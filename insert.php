@@ -19,15 +19,27 @@
 	$sctype = $_POST['sctype'];
 	$scno = $_POST['scno'];
 	$scexp = $_POST['scexp'];
-	
+	$encPwd = encryptIt( $password );
 	$dob2 = str_replace("/","",$dob1);
 	$dob = substr($dob2,4,4)."-".substr($dob2,0,2)."-".substr($dob2,2,2);
 	
 	$query = "insert into users values
-	('".$email."', '".$user."', '".$password."', '".$fname."', '".$lname."', '".$dob."', 
+	('".$email."', '".$user."', '".$encPwd."', '".$fname."', '".$lname."', '".$dob."', 
 	'".$phone."','".$street."', '".$city."', '".$state."', '".$zip."', 
 	'".$pctype."', '".$pcno."', '".$pcexp."','".$sctype."', '".$scno."', '".$scexp."','a')";
 	$result = mysqli_query($connection, $query);
+	
+	function encryptIt( $q ) {
+		$cryptKey  = 'nanee01358386';
+		$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+		return( $qEncoded );
+	}
+
+	function decryptIt( $q ) {
+		$cryptKey  = 'nanee01358386';
+		$qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+		return( $qDecoded );
+	}
 	
 	if($result)
 	{	

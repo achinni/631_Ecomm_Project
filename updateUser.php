@@ -1,7 +1,17 @@
 <?php
 	include 'connection.php';
 	session_start();
-	
+	function encryptIt( $q ) {
+		$cryptKey  = 'nanee01358386';
+		$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+		return( $qEncoded );
+	}
+
+	function decryptIt( $q ) {
+		$cryptKey  = 'nanee01358386';
+		$qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+		return( $qDecoded );
+	}
 	$email = $_POST['email'];
 	$user = $_POST['username'];
 	$password = $_POST['pwd'];
@@ -19,15 +29,14 @@
 	$sctype = $_POST['sctype'];
 	$scno = $_POST['scno'];
 	$scexp = $_POST['scexp'];
-	
+	$encpwd = encryptIt($password);
 	$dob2 = str_replace("/","",$dob1);
 	$dob = substr($dob2,4,4)."-".substr($dob2,0,2)."-".substr($dob2,2,2);
 	
-	$query = "update users 
-			  set email='".$email."', username='".$user."', password='".$password."', fname='".$fname."', lname='".$lname."', dob='".$dob."', 
+	$query = "update users set email='".$email."', username='".$user."', password='".$encpwd."', fname='".$fname."', lname='".$lname."', dob='".$dob."', 
 				phone='".$phone."', street='".$street."', city='".$city."', state='".$state."', zip='".$zip."', 
 				pcardtype='".$pctype."', pcardno='".$pcno."', pcardexp='".$pcexp."', scardtype='".$sctype."', scardno='".$scno."', scardexp='".$scexp."', status = 'a'
-				where username='".$user."'";
+				where username='".$user."' and email='".$email."'";
 	$result = mysqli_query($connection, $query);
 	
 	if($result)

@@ -132,16 +132,18 @@
 		<div class="col-md-offset-3 col-md-8">
 		<p id = "nouser" class="text-danger"></p>
 		</div>
+		
 		<?php
 			if(isset($_POST['loginsubmit']))
 			{
 				$user = $_POST['uusername'];
 				$password = $_POST['pwd'];
-				$query1 = "select username,password from users where username='".$user."' and password='".$password."'";
+				$encryptedpwd = encryptIt($password);
+				$query1 = "select username,password from users where username='".$user."' and password='".$encryptedpwd."'";
 				$result1 = mysqli_query($connection, $query1);
 				$num_rows1 = mysqli_num_rows($result1);
 				
-				$query2 = "select username,email,password from users where email='".$user."' and password='".$password."'";
+				$query2 = "select username,email,password from users where email='".$user."' and password='".$encryptedpwd."'";
 				$result2 = mysqli_query($connection, $query2);
 				$num_rows2 = mysqli_num_rows($result2);
 				
@@ -164,6 +166,17 @@
 					";
 				}
 			}
+		function encryptIt( $q ) {
+			$cryptKey  = 'nanee01358386';
+			$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+			return( $qEncoded );
+		}
+
+		function decryptIt( $q ) {
+			$cryptKey  = 'nanee01358386';
+			$qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+			return( $qDecoded );
+		}
 		?>
 	</div>
 	

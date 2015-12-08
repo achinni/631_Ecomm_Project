@@ -94,7 +94,7 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" value='<?php echo $rowU['email']; ?>' class="form-control input-md">
+					<input id="regemail" name="email" type="text" value='<?php echo $rowU['email']; ?>' class="form-control input-md" disabled>
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
@@ -114,16 +114,29 @@
 					<input id="lname" name="lname" type="text" value='<?php echo $rowU['lname'] ?>' class="form-control input-md">
 				  </div>
 				</div>
-				
+				<?php
+				$decpwd = decryptIt($rowU['password']);
+				function encryptIt( $q ) {
+					$cryptKey  = 'nanee01358386';
+					$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+					return( $qEncoded );
+				}
+
+				function decryptIt( $q ) {
+					$cryptKey  = 'nanee01358386';
+					$qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+					return( $qDecoded );
+				}
+				?>
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="pwd">Password</label>  
 				  <div class="col-md-4">
-					<input id="rpwd" name="pwd" type="password" value='<?php echo $rowU['password'] ?>' class="form-control input-md">
+					<input id="rpwd" name="pwd" type="password" value='<?php echo $decpwd ?>' class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="rpwd">Re-Type Password</label>  
 				  <div class="col-md-4">
-					<input id="rrpwd" name="rpwd" type="password" value='<?php echo $rowU['password'] ?>' class="form-control input-md">
+					<input id="rrpwd" name="rpwd" type="password" value='<?php echo $decpwd ?>' class="form-control input-md">
 				  </div>
 				</div>
 				
