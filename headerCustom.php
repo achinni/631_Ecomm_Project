@@ -46,6 +46,7 @@
 			<div class="dropdown input-group-btn">
             <button type="button" class='btn btn-default' id="categoryBtn" name="category" data-toggle="dropdown">CATEGORY <span class="caret"></span></button>
 				<ul class="dropdown-menu">
+					<li><a href="productHome.php?category like '%'">ALL</a></li>
 					<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
 						$resultC = mysqli_query($connection,$queryC);
 						while($row = mysqli_fetch_array($resultC)){
@@ -116,6 +117,8 @@
 				</div>
 				<?php
 				$decpwd = decryptIt($rowU['password']);
+				$decpcno = decryptIt($rowU['pcardno']);
+				$decscno = decryptIt($rowU['scardno']);
 				function encryptIt( $q ) {
 					$cryptKey  = 'nanee01358386';
 					$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
@@ -181,7 +184,7 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="pcard">Primary Card (Default)</label>
 				  <div class="col-md-4">
-					<input id="pcard" name="pcno" type="text" value='<?php echo $rowU['pcardno'] ?>' class="form-control input-md">
+					<input id="pcard" name="pcno" type="text" value='<?php echo $decpcno ?>' class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
 					<select id="pcard" name="pctype" type="text" value='<?php echo $rowU['pcardtype'] ?>' class="form-control input-md">
@@ -199,7 +202,7 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="scard">Secondary Card (Optional)</label>
 				  <div class="col-md-4">
-					<input id="scard" name="scno" type="text" value='<?php echo $rowU['scardno'] ?>'
+					<input id="scard" name="scno" type="text" value='<?php echo $decscno ?>'
 					placeholder='Card Number' class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
