@@ -26,7 +26,7 @@
 	$query = "update users 
 			  set email='".$email."', username='".$user."', password='".$password."', fname='".$fname."', lname='".$lname."', dob='".$dob."', 
 				phone='".$phone."', street='".$street."', city='".$city."', state='".$state."', zip='".$zip."', 
-				pcardtype='".$pctype."', pcardno='".$pcno."', pcardexp='".$pcexp."', scardtype='".$sctype."', scardno='".$scno."', scardexp='".$scexp."'
+				pcardtype='".$pctype."', pcardno='".$pcno."', pcardexp='".$pcexp."', scardtype='".$sctype."', scardno='".$scno."', scardexp='".$scexp."', status = 'a'
 				where username='".$user."'";
 	$result = mysqli_query($connection, $query);
 	

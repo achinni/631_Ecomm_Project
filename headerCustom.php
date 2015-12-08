@@ -84,36 +84,36 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" placeholder='<?php echo $rowU['email']; ?>' class="form-control input-md">
+					<input id="regemail" name="email" type="text" value='<?php echo $rowU['email']; ?>' class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
 				  <div class="col-md-4">
-					<input id="regusername" name="username" type="text" placeholder='<?php echo $rowU['username'] ?>' class="form-control input-md" disabled>
+					<input id="regusername" name="username" type="text" value='<?php echo $rowU['username'] ?>' class="form-control input-md" disabled>
 				  </div>
 				</div>
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="fname">First Name</label>  
 				  <div class="col-md-4">
-					<input id="fname" name="fname" type="text" placeholder='<?php echo $rowU['fname'] ?>' class="form-control input-md">
+					<input id="fname" name="fname" type="text" value='<?php echo $rowU['fname'] ?>' class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="lname">Last Name</label>  
 				  <div class="col-md-4">
-					<input id="lname" name="lname" type="text" placeholder='<?php echo $rowU['lname'] ?>' class="form-control input-md">
+					<input id="lname" name="lname" type="text" value='<?php echo $rowU['lname'] ?>' class="form-control input-md">
 				  </div>
 				</div>
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="pwd">Password</label>  
 				  <div class="col-md-4">
-					<input id="rpwd" name="pwd" type="password" placeholder='<?php echo $rowU['password'] ?>' class="form-control input-md">
+					<input id="rpwd" name="pwd" type="password" value='<?php echo $rowU['password'] ?>' class="form-control input-md">
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="rpwd">Re-Type Password</label>  
 				  <div class="col-md-4">
-					<input id="rrpwd" name="rpwd" type="password" placeholder='<?php echo $rowU['password'] ?>' class="form-control input-md">
+					<input id="rrpwd" name="rpwd" type="password" value='<?php echo $rowU['password'] ?>' class="form-control input-md">
 				  </div>
 				</div>
 				
@@ -121,7 +121,7 @@
 				  <label class="col-md-2 control-label" for="dob">Date of Birth</label>  
 				  <div class="col-md-4 date">
 					<div class="input-group input-append date" id="datePicker" data-date-format="mm/dd/yyyy">
-						<input id="dob" type="text" class="form-control" name="dob" placeholder='<?php echo $dob; ?>'/>
+						<input id="dob" type="text" class="form-control" name="dob" value='<?php echo $dob; ?>'/>
 						<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 					</div> 
 				  </div>
@@ -135,33 +135,33 @@
 
 				  <label class="col-md-2 control-label" for="phone">Phone</label>  
 				  <div class="col-md-4">
-					<input id="phone" name="phone" type="text" placeholder='<?php echo $rowU['phone'] ?>' class="form-control input-md">
+					<input id="phone" name="phone" type="text" value='<?php echo $rowU['phone'] ?>' class="form-control input-md">
 				  </div>
 				</div>
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="address">Address</label>  
 				  <div class="col-md-4">
-					<input id="street" name="street" type="text" placeholder='<?php echo $rowU['street'] ?>' class="form-control input-md">
+					<input id="street" name="street" type="text" value='<?php echo $rowU['street'] ?>' class="form-control input-md">
 				  </div>
 				  <span class="col-md-2">
-					<input id="city" name="city" type="text" placeholder='<?php echo $rowU['city'] ?>' class="form-control input-md">
+					<input id="city" name="city" type="text" value='<?php echo $rowU['city'] ?>' class="form-control input-md">
 				  </span>
 				  <span class="col-md-2">
-					<input id="state" name="state" type="text" placeholder='<?php echo $rowU['state'] ?>' class="form-control input-md">
+					<input id="state" name="state" type="text" value='<?php echo $rowU['state'] ?>' class="form-control input-md">
 				  </span>
 				  <span class="col-md-2">
-					<input id="zip" name="zip" type="text" placeholder='<?php echo $rowU['zip'] ?>' class="form-control input-md">
+					<input id="zip" name="zip" type="text" value='<?php echo $rowU['zip'] ?>' class="form-control input-md">
 				  </span>
 				</div>
   
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="pcard">Primary Card (Default)</label>
 				  <div class="col-md-4">
-					<input id="pcard" name="pcno" type="text" placeholder='<?php echo $rowU['pcardno'] ?>' class="form-control input-md">
+					<input id="pcard" name="pcno" type="text" value='<?php echo $rowU['pcardno'] ?>' class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
-					<select id="pcard" name="pctype" type="text" placeholder='<?php echo $rowU['pcardtype'] ?>' class="form-control input-md">
+					<select id="pcard" name="pctype" type="text" value='<?php echo $rowU['pcardtype'] ?>' class="form-control input-md">
 					<option> VISA </option>
 					<option> Master </option>
 					<option> AMEX </option>
@@ -169,20 +169,23 @@
 					</select>
 				  </div>
 				  <div class="col-md-3">
-					<input id="pcard" name="pcexp" type="text" placeholder='<?php echo $rowU['pcardexp'] ?>' class="form-control input-md">
+					<input id="pcard" name="pcexp" type="text" value='<?php echo $rowU['pcardexp'] ?>' class="form-control input-md">
 				  </div>
 				</div>
 				
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="scard">Secondary Card (Optional)</label>
 				  <div class="col-md-4">
-					<input id="scard" name="scno" type="text" placeholder='<?php echo $rowU['scardno'] ?>' class="form-control input-md">
+					<input id="scard" name="scno" type="text" value='<?php echo $rowU['scardno'] ?>'
+					placeholder='Card Number' class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
-					<input id="scard" name="sctype" type="text" placeholder='<?php echo $rowU['scardtype'] ?>' class="form-control input-md">
+					<input id="scard" name="sctype" type="text" value='<?php echo $rowU['scardtype'] ?>' 
+					placeholder='Card Type' class="form-control input-md">
 				  </div>
 				  <div class="col-md-3">
-					<input id="scard" name="scexp" type="text" placeholder='<?php echo $rowU['scardexp'] ?>' class="form-control input-md">
+					<input id="scard" name="scexp" type="text" value='<?php echo $rowU['scardexp'] ?>'
+					placeholder='Card Expiry' class="form-control input-md">
 				  </div>
 				</div>
 
@@ -207,7 +210,7 @@
 <?php
 	if(isset($_POST['logout']))
 	{
-		session_unset();
+		//session_unset();
 		session_destroy();
 		session_start();
 		$_SESSION['user']='Guest';

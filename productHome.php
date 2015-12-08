@@ -13,6 +13,29 @@
 		$user_details['fname'] = 'Guest';
 		$user_details['lname'] = '';
 	}
+	
+	if(!empty($_GET['action'])) {
+	switch($_GET['action']) {
+		case "add":
+				$_SESSION['cart_item'][] = $_GET['code'];
+		break;
+		case "remove":
+			if(!empty($_SESSION['cart_item'])) {
+				foreach($_SESSION['cart_item'] as $k => $v) {
+						if($_GET['id'] == $v)
+							unset($_SESSION['cart_item'][$k]);				
+						if(empty($_SESSION['cart_item']))
+							unset($_SESSION['cart_item']);
+				}
+			}
+		break;
+		case "empty":
+ 			unset($_SESSION['cart_item']);
+ 		break;	
+	}
+	}
+
+	
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -33,8 +56,8 @@
 <!-- body -->
 	<div class='row'>
 		<div class='col-md-2'><?php include "leftSidebar.php" ?></div>
-		<div class='col-md-7'><?php include "mainContent.php" ?></div>
-		<div class='col-md-3'><?php include "rightSidebar.php" ?></div>
+		<div class='col-md-6'><?php include "mainContent.php" ?></div>
+		<div class='col-md-4'><?php include "rightSidebar.php" ?></div>
 	</div>
 <!-- footer -->
 	<div class='row'><?php include "footer.php" ?></div>

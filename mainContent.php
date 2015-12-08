@@ -5,7 +5,6 @@ include 'connection.php';
 	$pageno = 1;
 	$ino = 0;
 	$noProdPage = 10;
-	$c = $_SESSION['counter'];
 ?>
 
 <script>
@@ -65,22 +64,19 @@ include 'connection.php';
 				?>
 				<div class='row'>
 				<div class='col-md-6'>
-				<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
+				<form id='cartform<?php echo $row['pid']?>' 
+				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>" 
+				method='post'>
 				<div class="panel panel-warning">
-				  <div class="panel-heading"><?php echo $row['pid'] ?></div>
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")"; ?></div>
 				  <div class="panel-body">
 					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
+
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
 						<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
-						<script>
-						$("#1<?php echo $row['pid']?>").click(function(){
-						document.getElementById("cartdetails").innerHTML = 
-						"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
-							document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
-							$("#1<?php echo $row['pid']?>").attr("disabled",true);
-						});
-						</script>
+
+
 				  </div>
 				</div> <!-- panel ends -->
 				</form>
@@ -91,22 +87,16 @@ include 'connection.php';
 					$nextItem = $row;
 				?>
 				<div class='col-md-6'> <!-- col-2 starts -->
-				<form id='cartform<?php echo $row['pid']?>' method='post' action='productHome.php'>
+				<form id='cartform<?php echo $row['pid']?>' method='post' 
+				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>">
 				<div class="panel panel-warning">
-				  <div class="panel-heading"><?php echo $row['pid'] ?></div>
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")"; ?></div>
 				  <div class="panel-body">
 					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
 						<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>
-						<script>
-						$("#1<?php echo $row['pid']?>").click(function(){
-						document.getElementById("cartdetails").innerHTML = 
-						"<?php $_SESSION['pid'][$c]= $row['pid'] ?>"+"HI";
-							document.getElementById("cartrow").innerHTML += "<?php echo $_SESSION['pid'][$c]; $c++; $_SESSION['counter']=$c; ?>";
-							$("#1<?php echo $row['pid']?>").attr("disabled",true);
-						});
-						</script>
+
 				  </div>
 				</div> <!-- panel ends -->
 				</form>
@@ -114,7 +104,7 @@ include 'connection.php';
 
 				<div id='prod<?php echo $prevItem['pid'] ?>' class='col-md-12 collapse'>
 					<div class="panel panel-warning">
-						<div class="panel-heading"> <?php echo $prevItem['pid'] ?> DESCRIPTION</div>
+						<div class="panel-heading"> <?php echo $prevItem['make']." ".$prevItem['model']." (".$prevItem['year'].")" ?> DESCRIPTION</div>
 						<div class="panel-body"> <?php echo $prevItem['description'] ?></div>
 					</div>
 					<div class="panel panel-success">
@@ -125,8 +115,12 @@ include 'connection.php';
 
 				<div id='prod<?php echo $row['pid'] ?>' class='col-md-12 collapse'>
 					<div class="panel panel-warning">
-						<div class="panel-heading"> <?php echo $row['pid'] ?> DESCRIPTION</div>
-						<div class="panel-body"> <?php echo $row['description'] ?></div>
+						<div class="panel-heading"> <?php echo $row['make']." ".$row['model']." (".$row['year'].")" ?> DESCRIPTION</div>
+						<div class="panel-body"> 
+						<?php 
+							echo $row['description'] 
+						?>
+						</div>
 					</div>
 					<div class="panel panel-success">
 						<div class="panel-heading"> <?php echo $row['pid'] ?> REVIEWS</div>

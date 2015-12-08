@@ -14,6 +14,8 @@
 		echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
 	else
 		$_SESSION['user']='Guest';
+	if(sizeof($_SESSION["cart_item"])==0)
+		$_SESSION["cart_item"] = array();
 ?>
 <!DOCTYPE html>
 <html lang='en'>

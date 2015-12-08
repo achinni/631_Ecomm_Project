@@ -5,6 +5,7 @@
 		$user = $_SESSION['user'];
 	else
 		$_SESSION['user']='Guest';
+	
 ?>
 
 <!DOCTYPE html>
