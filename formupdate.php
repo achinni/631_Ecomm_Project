@@ -15,9 +15,11 @@
 		$stock = $row['stock'];
 		$price = $row['price'];
 		$desc = $row['description'];
+		$seller = $row['seller'];
 		
-		$result[] = array( 'make' => $make, 'model' => $model, 'year' => $year, 'stock' => $stock, 
-							'price' => $price, 'desc' => $desc,  );
+		$result[] = 
+		array( 'make' => $make, 'model' => $model, 'year' => $year, 'stock' => $stock, 
+							'price' => $price, 'desc' => $desc, 'seller' =>$seller  );
 	}
 	echo json_encode($result);
 

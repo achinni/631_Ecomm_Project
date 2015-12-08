@@ -25,7 +25,7 @@
 
 	function showproducts(pid)
 	{
-	if (pid=="")
+	if (pid=="none")
 	{
 		//document.getElementById("company_name").value="";
 		return;
@@ -51,6 +51,7 @@
 			  document.getElementById("uyear").value = data[i].year;
 			  document.getElementById("uprice").value = data[i].price;
 			  document.getElementById("udesc").value = data[i].desc;
+			  document.getElementById("useller").value = data[i].seller;
 			}
 		}
 	}
@@ -99,78 +100,17 @@
   <div class="row">
      <h3> Welcome Srikanth, Adithya and Vamsi <?php echo $user; ?> </h3>
 	
-	 <div class = "col-md-3">
-		<script>
-		$(document).ready(function(){
-		  $("#added").on("hide.bs.collapse", function(){
-			$("#arrowbtnnewprod").html('<span class="glyphicon glyphicon-triangle-right"></span> New Products');
-		  });
-		  $("#added").on("show.bs.collapse", function(){
-			$("#arrowbtnnewprod").html('<span class="glyphicon glyphicon-triangle-bottom"></span> New Products');
-		  });
-		  $("#prod").on("hide.bs.collapse", function(){
-			$("#arrowbtnproduct").html('<span class="glyphicon glyphicon-triangle-right"></span> Product Updates');
-		  });
-		  $("#prod").on("show.bs.collapse", function(){
-			$("#arrowbtnproduct").html('<span class="glyphicon glyphicon-triangle-bottom"></span> Product Updates');
-		  });
-		  $("#quantity").on("hide.bs.collapse", function(){
-			$("#arrowbtninventory").html('<span class="glyphicon glyphicon-triangle-right"></span> Inventory Updates');
-		  });
-		  $("#quantity").on("show.bs.collapse", function(){
-			$("#arrowbtninventory").html('<span class="glyphicon glyphicon-triangle-bottom"></span> Inventory Updates');
-		  });
-		});
-		</script>
 
-		<!-- LEFT SIDEBAR -->
-		<div class="panel panel-info">
-		<div class="panel-heading"><h4 class="panel-title"> Updates </h4></div>
-		</div>
-		<div class="panel-group" id="leftSidebar">
-			
-			  
-			<div class="panel panel-info">
-			  <div class="panel-heading">
-				<h4 class="panel-title">
-				  <button type="button" id="arrowbtnproduct" class="btn btn-link" data-toggle="collapse" data-target="#prod">
-					<span class="glyphicon glyphicon-triangle-bottom"></span> Product Updates
-				  </button>
-				</h4>
-			  </div>
-			  <div id="prod" class="panel-collapse collapse in">
-				<div class="panel-body">
-					<p> Product Change </p>
-				</div>
-			  </div>
-			</div>
-			  
-			<div class="panel panel-info">
-			  <div class="panel-heading">
-				<h4 class="panel-title">
-				  <button type="button" id="arrowbtnnewprod" class="btn btn-link" data-toggle="collapse" data-target="#added">
-					<span class="glyphicon glyphicon-triangle-bottom"></span> New Products
-				  </button>
-				</h4>
-			  </div>
-			  <div id="added" class="panel-collapse collapse in">
-				<div class="panel-body">
-					<p> New Products </p>
-				</div>
-			  </div>
-		  	</div>
-     	</div>
-     </div>
      
-     <div class = "col-md-9">
+     <div class = "col-md-12">
        <ul class="nav nav-tabs nav-justified">
-		<li id="home1"><a data-toggle="tab" href="#home">Home</a></li>
+		<li id="home1" class="active"><a data-toggle="tab" href="#home">Home</a></li>
 		<li id="products1"><a data-toggle="tab" href="#products">Update Products</a></li>
 		<li id="addnew1"><a data-toggle="tab" href="#addnew">Add New Products</a></li>
 	  </ul>
 
 	  <div class="tab-content">
-		<div id="home" class="tab-pane fade">
+		<div id="home" class="tab-pane fade in active">
 		  <h3>HOME</h3>
 		  <p>Lorem ipsum dolor sit amet</p>
 		</div>
@@ -184,28 +124,23 @@
 			<fieldset>
 			
 			<div class="form-group">
-			  <label class="col-md-2 control-label" for="upid">Product ID</label>  
-			  <div class="col-md-3">
+			  <label class="col-md-2 control-label" for="upid">Product</label>  
+			  <div class="col-md-8">
 				<select id="upid" name="upid" type="text" placeholder="Product ID" 
 				onChange="showproducts(this.value)" class="form-control input-md">
-				<option value=''>Select a product to update</option>
+				<option value='none'>Select a product to update</option>
 					<?php
 						$pidquery = "select * from products";
 						$pidres = mysqli_query($connection, $pidquery);
 						
 						while($pidrow = mysqli_fetch_assoc($pidres)) {
 						echo"<option value='".$pidrow['pid']."'>";
-						echo $pidrow['pid']." (".$pidrow['make']." ".$pidrow['model'].")";
+						echo $pidrow['pid']." (".$pidrow['category']." - ".$pidrow['make']." ".$pidrow['model'].")";
 						echo"</option>";
 						}
 					?>
 				
 				</select>
-			  </div>
-			  
- 			  <label class="col-md-2 control-label" for="ustock">Stock</label> 
-			  <div class="col-md-3">
-				<input id="ustock" name="ustock" type="text" placeholder="Enter New Quantity" class="form-control input-md">
 			  </div>
 			</div>
 	
@@ -230,15 +165,27 @@
 			  </div>
 			  <label class="col-md-2 control-label" for="uprice">Price</label>  
 			  <div class="col-md-3">
-				<input id="uprice" name="uprice" type="text" placeholder="Enter Price" class="form-control input-md">
+				<input id="uprice" name="uprice" type="text" placeholder="Enter New Price" class="form-control input-md">
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			  <label class="col-md-2 control-label" for="ustock">Stock</label> 
+			  <div class="col-md-3">
+				<input id="ustock" name="ustock" type="text" placeholder="Enter New Quantity" class="form-control input-md">
+			  </div>
+			  
+			  <label class="col-md-2 control-label" for="useller">Seller</label>  
+			  <div class="col-md-3">
+				<input id="useller" name="useller" type="text" placeholder="Enter New Seller" class="form-control input-md">
 			  </div>
 			</div>
 			
 			<div class="form-group">
 			  <label class="col-md-2 control-label" for="udesc">Description</label>  
 			  <div class="col-md-8">
-				<textarea id="udesc" name="udesc" rows="3" class="form-control input-md" 
-				placeholder="Enter Product Description (Up to 200 Characters)"></textarea>
+				<textarea id="udesc" name="udesc" rows="2" class="form-control input-md" 
+				placeholder="Enter Product Description"></textarea>
 			  </div>
 			</div>
 
@@ -256,7 +203,38 @@
 		<?php
 			if(isset($_POST['UpdateProducts']))
 			{
+				if($pid =='none')
+					echo "Error: Please Select a Product";
+				else
+				{
+					$pid = $_POST['upid'];
+					$make = $_POST['umake'];
+					$model = $_POST['umodel'];
+					$year = $_POST['uyear'];
+					$price = $_POST['uprice'];
+					$stock = $_POST['ustock'];
+					$seller = $_POST['useller'];
+					$desc = $_POST['udesc'];
 				
+					$proinsquery = "update products set make='".$make."', model='".$model."', 
+					year='".$year."', price='".$price."', stock=".$stock.",
+					seller='".$seller."', description='".$desc."' where pid='".$pid."'";
+				
+				
+				
+					if($proinsresult = mysqli_query($connection, $proinsquery))				
+						echo "Successfully Updated";
+					else
+						echo "Error: ".$connection->error;
+				}
+				echo"
+					<script type = 'text/javascript'>
+					document.getElementById('products1').className = 'active';
+					document.getElementById('products').className = 'tab-pane fade in active';
+					document.getElementById('home1').className = '';
+					document.getElementById('home').className = 'tab-pane fade';
+					</script>
+					";
 			}
 		?>
 		
@@ -306,6 +284,7 @@
 			  <div class="col-md-3">
 				<select id="category" name="category" 
 				class="form-control input-md">
+					<option>Select a Category</option>
 					<option>Camera</option>
 					<option>Hard Drive</option>
 					<option>Laptop</option>
@@ -338,7 +317,7 @@
 			  </div>
 			  <label class="col-md-2 control-label" for="img">Image</label> 
 			  <div class="col-md-3">
-				<input id="img" name="img" type="text" class="input-md">
+				<input id="img" name="img" type="file" class="form-control input-md">
 			  </div>
 			</div>
 			
@@ -372,26 +351,25 @@
 				
 				$query = "insert into products values
 					('".$pid."', '".$make."', '".$model."', '".$year."', '".$desc."', 
-					'".$category."', '".$subcategory."',".$price.", '".$seller."', ".$stock.", '".$img."')";
+					'".$category."', '".$subcategory."','".$price."', '".$seller."', '".$stock."', '".$img."')";
 				$result = mysqli_query($connection, $query);
 				
 				if($result)
 				{
-					echo"
-					<script type = 'text/javascript'>
-						document.getElementById('inserted').innerHTML = 
-						'Product Successfully Added';
-					</script>
-					";
+					echo "Product Successfully Added";
 				}
 				else
 				{
-					echo"
-					<script type = 'text/javascript'>
-						document.getElementById('notinserted').innerHTML = 'error';
-						</script>
-					";
+					echo"Error: ".$connection->error;
 				}
+				echo"
+					<script type = 'text/javascript'>
+					document.getElementById('addnew1').className = 'active';
+					document.getElementById('addnew').className = 'tab-pane fade in active';
+					document.getElementById('home1').className = '';
+					document.getElementById('home').className = 'tab-pane fade';				
+					</script>
+					";
 		  	}
 		  ?>
 		  
