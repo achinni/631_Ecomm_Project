@@ -79,8 +79,7 @@
 		} else {
 		echo  //Fill in the document.location thing
 		'<script type="text/javascript">
-								if(confirm("Your mail has been sent"))
-								document.location = "/";
+								alert("Your mail has been sent");
 				</script>';
 		}
 		

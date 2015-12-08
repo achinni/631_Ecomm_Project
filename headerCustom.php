@@ -94,12 +94,12 @@
 				<div class="form-group">
 				  <label class="col-md-2 control-label" for="regemail">Email</label>  
 				  <div class="col-md-4">
-					<input id="regemail" name="email" type="text" value='<?php echo $rowU['email']; ?>' class="form-control input-md" disabled>
+					<input id="regemail" name="email" type="text" value='<?php echo $rowU['email']; ?>' class="form-control input-md" readonly>
 				  </div>
 				  
 				  <label class="col-md-2 control-label" for="regusername">Username</label>  
 				  <div class="col-md-4">
-					<input id="regusername" name="username" type="text" value='<?php echo $rowU['username'] ?>' class="form-control input-md" disabled>
+					<input id="regusername" name="username" type="text" value='<?php echo $rowU['username'] ?>' class="form-control input-md" readonly>
 				  </div>
 				</div>
 				

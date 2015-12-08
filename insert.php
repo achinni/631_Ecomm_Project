@@ -81,9 +81,8 @@
 		} else {
 		echo  //Fill in the document.location thing
 		'<script type="text/javascript">
-								if(confirm("Your mail has been sent"))
-								document.location = "/";
-				</script>';
+								alert("Your mail has been sent");
+		</script>';
 		}
 		
 		echo "<meta http-equiv='refresh' content='0; url=producthome.php'>";
