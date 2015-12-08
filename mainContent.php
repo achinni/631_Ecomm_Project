@@ -68,9 +68,10 @@ include 'connection.php';
 				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>" 
 				method='post'>
 				<div class="panel panel-warning">
-				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")"; ?></div>
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")
+				  <span class='text-right'>$".$row['price']."</span>"; ?></div>
 				  <div class="panel-body">
-					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
+					  <img src = '<?php echo $row['imagePath'] ?>.jpg' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
@@ -90,9 +91,11 @@ include 'connection.php';
 				<form id='cartform<?php echo $row['pid']?>' method='post' 
 				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>">
 				<div class="panel panel-warning">
-				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")"; ?></div>
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")
+				  <span class='text-right'>$".$row['price']."</span>"; ?>
+				 </div>
 				  <div class="panel-body">
-					  <img src = '<?php echo $row['imagePath'] ?>' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
+					  <img src = '<?php echo $row['imagePath'] ?>.jpg' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
 						<button type='submit' form='cartform<?php echo $row['pid']?>' class='btn btn-success' id= "1<?php echo $row['pid']?>">Add to cart</button>
 						<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#prod<?php echo $row['pid'] ?>' id= '<?php echo $row['pid'] ?>'>Detailed View</button>

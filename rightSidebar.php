@@ -29,9 +29,10 @@
 				<table id="cart" class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th> Item ID </th>
-							<th> Price </th>
-							<th> Action </th>
+							<th width="50%"> Item </th>
+<!-- 							<th width="15%"> Qty </th> -->
+							<th align="center" width="25%"> Price </th>
+							<th width="10%"> A </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,18 +46,20 @@
 					?>
 					<tr>
 					<td><?php echo $rowcart1['make']." ".$rowcart1['model']; ?></td>
-					<td><?php echo "$ ".$rowcart1['price']; ?></td>
+<!-- 					<td><input type="number" value="1" name="quantity" min="1" max="5"></td> -->
+					<td align="center"><?php echo "$".$rowcart1['price']; ?></td>
 					<td><a href="productHome.php?action=remove&id=<?php echo $item; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 					<?php
-						//$item_total += ($item["price"]*$item["quantity"]);
+						$item_total += ($rowcart1["price"]);
 					}
 					?>
 
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"> <h4 class="text-center text-danger">Total = $1099.99</h4>
+							<td colspan="2"> <h4 class="text-center text-danger">
+							Subtotal = $<?php echo $item_total; ?></h4>
 							<a href="#" class="btn btn-success btn-block">Checkout</a></td>
 						</tr>
 					</tfoot>
