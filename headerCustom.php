@@ -26,6 +26,15 @@
 		$dob = substr($dobtemp,4,2)."/".substr($dobtemp,6,2)."/".substr($dobtemp,0,4); 
 	}
 ?>
+<script type = "text/javascript">
+	// $(".dropdown-menu li a").click(function(){
+// 	  $(this).parents(".dropdown input-group-btn").find('#categoryBtn').text($(this).text);
+// 	  $(this).parents(".dropdown input-group-btn").find('#categoryBtn').val($(this).text);
+// 	});
+	$(".dropdown-menu li a").click(function(){
+		$("#categoryBtn").attr('value','whatever');
+	});
+</script>
 <!-- custom header -->
   <div class='container-fluid' style='margin-bottom:10px'>
     <div class='row' style='background-color:#b2cccc'>
@@ -35,13 +44,14 @@
         <form role='form' action="productHome.php" class='form-group' method="post" enctype="multipart/form-data">
 		<div id ="form" class='input-group input-group-md'>
 			<div class="dropdown input-group-btn">
-            <button type="button" class='btn btn-default' name="category" data-toggle="dropdown"/></span> CATEGORY <span class="caret"></span></button>
+            <button type="button" class='btn btn-default' id="categoryBtn" name="category" data-toggle="dropdown">CATEGORY <span class="caret"></span></button>
 				<ul class="dropdown-menu">
 					<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
 						$resultC = mysqli_query($connection,$queryC);
 						while($row = mysqli_fetch_array($resultC)){
 							$category = $row['category']; ?>
-							<li><a href="#"><?php echo $category ?></a></li>
+							<li><a href="productHome.php?category=<?php echo $category ?>"><?php echo $category ?></a></li>
+							
 					<?php } ?>
 			  </ul>
 			</div>

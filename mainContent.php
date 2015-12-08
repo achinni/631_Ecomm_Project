@@ -25,6 +25,11 @@ include 'connection.php';
 		$param = $_POST['query'];
 		$query = "select * from products where make LIKE '%".$param."%' OR pid LIKE '%".$param."%'";
 	  }
+	  else if(isset($_GET['category']))
+	  {
+		  $value = $_GET['category'];
+		  $query = "select * from products where category='$value'";
+	  }
 	  else{
 		  $query = "select * from products" ;
 	  }
