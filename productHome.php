@@ -106,14 +106,16 @@
 <!-- header -->
 <?php include "header.php" ?>  
 <?php include "headerCustom.php" ?>
-<div class='container'>
+<div class='container-fluid'>
 
 <!-- body -->
 	<div class='row'>
 		<div class='col-md-2'><?php include "leftSidebar.php" ?></div>
 		<div class='col-md-6'><?php include "mainContent.php" ?></div>
+		<div class='clearfix visible-lg'></div>
 		<div class='col-md-4'><?php include "rightSidebar.php" ?></div>
 	</div>
+	<div class='clearfix visible-lg'></div>
 <!-- footer -->
 	<div class='row'><?php include "footer.php" ?></div>
 </div>
