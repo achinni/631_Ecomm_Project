@@ -32,7 +32,7 @@ include 'connection.php';
 						$resultB = mysqli_query($connection,$queryB);
 						while($row = mysqli_fetch_array($resultB)){
 							$make = $row['make'];
-							echo"<li><a href='productHome.php?make=$make'>$make</a></li>";
+							echo"<li><a href='mainContent.php?make=$make'>$make</a></li>";
 						}
 					?>
 				</ul>
@@ -54,7 +54,7 @@ include 'connection.php';
 						$resultF = mysqli_query($connection,$queryF);
 						while($row = mysqli_fetch_array($resultF)){
 							$category = $row['category'];
-							echo"<li><a href='productHome.php?category=$category'>$category</a></li>";
+							echo"<li><a href='user.php?category=$category'>$category</a></li>";
 						}
 					?>
 				</ul>

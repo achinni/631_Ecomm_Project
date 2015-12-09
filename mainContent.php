@@ -30,14 +30,6 @@ include 'connection.php';
 		  $value = $_GET['category'];
 		  $query = "select * from products where category='$value'";
 	  }
-	  else if(isset($_GET['make'])){
-	  		$value = $_GET['make'];
-	  		$query= "select * from products where make='$value'";
-	  }
-	  else if(isset($_GET['seller'])){
-	  		$value = $_GET['seller'];
-	  		$query= "select * from products where seller='$value'";
-	  }
 	  else{
 		  // $query = "select * from products left outer join reviews on products.pid=reviews.pid order by products.pid" ;
 		  $query = "select * from products";

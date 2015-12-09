@@ -34,13 +34,12 @@ $(document).ready(function(){
         </h4>
       </div>
       <div id="brand" class="panel-collapse collapse in">
-        <div class="panel-body list-group">
+        <div class="panel-body">
 			<?php $queryB = "SELECT distinct(`make`) FROM `products` order by `make` ";
 				$resultB = mysqli_query($connection,$queryB);
 				while($row = mysqli_fetch_array($resultB)){
 					$make = $row['make']; ?>
-					<a href='productHome.php?make=<?php echo $make ?>' class='list-group-item'><?php echo $make ?></a>
-					<!-- <div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value=""><?php echo $make ?></label></div> -->
+					<div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value=""><?php echo $make ?></label></div>
 				<?php } ?>
         </div>
       </div>
@@ -54,13 +53,12 @@ $(document).ready(function(){
         </h4>
       </div>
       <div id="category" class="panel-collapse collapse in">
-        <div class="panel-body list-group">
+        <div class="panel-body">
 			<?php $queryC = "SELECT distinct(`category`) FROM `products` order by `category` ";
 				$resultC = mysqli_query($connection,$queryC);
 				while($row = mysqli_fetch_array($resultC)){
 					$category = $row['category']; ?>
-					<a href='productHome.php?category=<?php echo $category ?>' class='list-group-item'><?php echo $category ?></a>
-					<!-- <div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value='<?php echo $category ?>'><?php echo $category ?></label></div> -->
+					<div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value='<?php echo $category ?>'><?php echo $category ?></label></div>
 			<?php } ?>
         </div>
       </div>
@@ -74,13 +72,12 @@ $(document).ready(function(){
         </h4>
       </div>
 	  <div id="seller" class="panel-collapse collapse in">
-        <div class="panel-body list-group">
+        <div class="panel-body">
 			<?php $queryS = "SELECT distinct(`seller`) FROM `products` order by `seller` ";
 				$resultS = mysqli_query($connection,$queryS);
 				while($row = mysqli_fetch_array($resultS)){
 					$seller = $row['seller']; ?>
-					<a href='productHome.php?seller=<?php echo $seller ?>' class='list-group-item'><?php echo $seller ?></a>
-					<!-- <div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value=""><?php echo $seller ?></label></div> -->
+					<div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value=""><?php echo $seller ?></label></div>
 			<?php } ?>
         </div>
       </div>
