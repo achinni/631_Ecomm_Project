@@ -112,7 +112,7 @@
 <!-- header -->
 <?php include "header.php" ?>  
 <?php include "headerCustom.php" ?>
-<div class='container-fluid'>
+<div class='container'>
 
 <!-- body -->
 	<div class='row'>

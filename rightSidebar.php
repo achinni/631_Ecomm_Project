@@ -19,9 +19,9 @@
 			</div>
 		</div>
 
-		<div class="panel panel-info container-fluid" id="shopkart">
+		<div class="panel panel-info" id="shopkart">
 			
-			<div class="panel-heading row">
+			<div class="panel-heading">
 			<div class="col-md-9">
 			<button type="submit" id="btnkart" class="btn btn-link">
 			<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (Click to refresh)</button>
