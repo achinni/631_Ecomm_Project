@@ -18,7 +18,6 @@
 				</table>
 			</div>
 		</div>
-		
 
 		<div class="panel panel-info container-fluid" id="shopkart">
 			
@@ -30,7 +29,6 @@
 			<div class="col-md-3"><form action = "productHome.php?action=empty" method="post">
 			<button type="submit" class="btn btn-link">
 			Empty</button> </form> </div> </div>
-
 			<div class="panel-body">
 				
 				<table id="cart" class="table table-hover table-condensed">
