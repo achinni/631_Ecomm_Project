@@ -30,15 +30,12 @@
 	$scno = $_POST['scno'];
 	$scexp = $_POST['scexp'];
 	$encpwd = encryptIt($password);
-	$encpcno = encryptIt($pcno);
-	$encscno = encryptIt($scno);
-	
 	$dob2 = str_replace("/","",$dob1);
 	$dob = substr($dob2,4,4)."-".substr($dob2,0,2)."-".substr($dob2,2,2);
 	
 	$query = "update users set email='".$email."', username='".$user."', password='".$encpwd."', fname='".$fname."', lname='".$lname."', dob='".$dob."', 
 				phone='".$phone."', street='".$street."', city='".$city."', state='".$state."', zip='".$zip."', 
-				pcardtype='".$pctype."', pcardno='".$encpcno."', pcardexp='".$pcexp."', scardtype='".$sctype."', scardno='".$encscno."', scardexp='".$scexp."', status = 'a'
+				pcardtype='".$pctype."', pcardno='".$pcno."', pcardexp='".$pcexp."', scardtype='".$sctype."', scardno='".$scno."', scardexp='".$scexp."', status = 'a'
 				where username='".$user."' and email='".$email."'";
 	$result = mysqli_query($connection, $query);
 	
