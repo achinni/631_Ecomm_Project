@@ -13,7 +13,7 @@
       <ul class='nav navbar-nav navbar-right'>
 		<li class='active'>
 		<form action = '#' method='post'>
-		<button type="submit" name="logout" class="btn btn-link">logout</button>
+		<button type="submit" name="logout" class="btn btn-link btn-lg">logout</button>
 		</form>
 		</li>
       </ul>
