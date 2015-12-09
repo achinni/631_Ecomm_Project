@@ -17,7 +17,9 @@
 	if(!empty($_GET['action'])) {
 	switch($_GET['action']) {
 		case "add":
-				$_SESSION['cart_item'][] = $_GET['code'];
+				$_SESSION['cart_item'][] = $_GET['id'];
+				$_SESSION['qty'][$_GET['id']] = 1;
+				
 		break;
 		case "remove":
 			if(!empty($_SESSION['cart_item'])) {
@@ -28,12 +30,28 @@
 							unset($_SESSION['cart_item']);
 				}
 			}
+			if(!empty($_SESSION['qty'])) {
+				foreach($_SESSION['qty'] as $k => $v) {
+						if($k == $_GET['id'])
+							unset($_SESSION['qty'][$k]);				
+						if(empty($_SESSION['qty']))
+							unset($_SESSION['qty']);
+				}
+			}
 		break;
 		case "empty":
  			unset($_SESSION['cart_item']);
+ 			unset($_SESSION['qty']);
  		break;	
 	}
 	}
+
+// if (isset($_POST['remove'])) {
+//     $key=array_search($_GET['name'],$_SESSION['name']);
+//     if($key!==false)
+//     unset($_SESSION['name'][$key]);
+//     $_SESSION["name"] = array_values($_SESSION["name"]);
+// } 
 
 	
 ?>
@@ -46,6 +64,49 @@
   <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+  
+  <script type = "text/javascript">
+
+	function updateQTY(pid,qty)
+	{
+	if (pid=="")
+	{
+		//document.getElementById("company_name").value="";
+		return;
+	}
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var data = JSON.parse(xmlhttp.responseText);
+			for(var i=0;i<data.length;i++) 
+			{
+			//  document.getElementById("subtot").innerHTML = "Total: $ "+data[i].total;
+			}
+		}
+	}
+	xmlhttp.open("GET","updateQTY.php?pid="+pid+"&qty="+qty,true);
+	xmlhttp.send();
+	}
+	
+	$(document).ready(function() { /// Wait till page is loaded
+	$('#refresh').click(function(){
+	$('#subtot').load('total.php#total', function() {
+	/// can add another function here
+	});
+	});
+	}); //// End of Wait till page is loaded
+
+</script>
+  
 </head>
 <body>
 <!-- header -->

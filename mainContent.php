@@ -79,7 +79,7 @@ include 'connection.php';
 				<div class='row'>
 				<div class='col-md-6'>
 				<form id='cartform<?php echo $row['pid']?>' 
-				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>" 
+				action="productHome.php?action=add&id=<?php echo $row['pid']; ?>" 
 				method='post'>
 				<div class="panel panel-warning container-fluid">
 				  <div class="panel-heading row">
@@ -105,12 +105,20 @@ include 'connection.php';
 				?>
 				<div class='col-md-6'> <!-- col-2 starts -->
 				<form id='cartform<?php echo $row['pid']?>' method='post' 
+<<<<<<< Updated upstream
 				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>">
 				<div class="panel panel-warning container-fluid">
 				  <div class="panel-heading row">
 				  <div class='col-md-9'><?php echo $row['make']." ".$row['model']; ?> </div>
 				  <div class='col-md-3'>$<?php echo $row['price']; ?> </div>
 				</div>
+=======
+				action="productHome.php?action=add&id=<?php echo $row['pid']; ?>">
+				<div class="panel panel-warning">
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")
+				  <span class='text-right'>$".$row['price']."</span>"; ?>
+				 </div>
+>>>>>>> Stashed changes
 				  <div class="panel-body">
 					  <img src = '<?php echo $row['imagePath'] ?>.jpg' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
