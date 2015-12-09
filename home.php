@@ -2,6 +2,11 @@
 	include 'connection.php';
 	session_start();
 	
+	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
+		echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
+	else
+		$_SESSION['user']='Guest';
+	
 	$_SESSION['product']=array();
 	if(sizeof($_SESSION["qty"])==0)
 		$_SESSION['qty']=array();
@@ -11,11 +16,6 @@
 		$_SESSION['subtotal']=array();
 	if($_SESSION["subtotal"]==0)
 		$_SESSION['total']=0;
-	
-	if($_SESSION['user']!='Guest' && $_SESSION['user']!='631team0')
-		echo "<meta http-equiv='refresh' content='0; url=productHome.php'>";
-	else
-		$_SESSION['user']='Guest';
 	if(sizeof($_SESSION["cart_item"])==0)
 		$_SESSION["cart_item"] = array();
 ?>

@@ -15,44 +15,10 @@
 							</div>
 						</div>
 						</tr>
-	<!-- 
-<?php	if($_SESSION['user']=='Guest')
-			{
-				echo"
-					<tr> <td colspan='2'>
-						Please login to use this feature
-					</td></tr>
-				";
-			}
-			else;
-			{	
-				$emquery = "select * from favorites natural join products where username='".$_SESSION['user']."'";
-				$fres = mysqli_query($connection, $emquery);
-				$frow = mysqli_fetch_assoc($fres);
-								
-				while($frow)
-				{
-					echo"
-						<tr>
-						<div class= 'row'>
-							<div class='col-md-4'>
-								<td>".$frow['make']." ".$frow['model']." (".$frow['year'].")</td>
-							</div>
-							<div class='col-md-2'>
-								<td class='text-center'>$ ".$frow['price']."</td>
-							</div>
-						</div>
-						</tr>
-					";
-				}
-			}
-			?>
- -->
-						
 				</table>
 			</div>
 		</div>
-
+		
 
 		<div class="panel panel-info container-fluid" id="shopkart">
 			
@@ -61,17 +27,18 @@
 			<button type="submit" id="btnkart" class="btn btn-link">
 			<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (Click to refresh)</button>
 			</div>
-
 			<div class="col-md-3"><form action = "productHome.php?action=empty" method="post">
-			<button type="submit" class="btn btn-link"/>Empty </form> </div>
-			</div>
+			<button type="submit" class="btn btn-link">
+			Empty</button> </form> </div> </div>
+			
+			
 			<div class="panel-body">
 				
 				<table id="cart" class="table table-hover table-condensed">
 					<thead>
 						<tr>
 							<th width="50%"> Item </th>
-							<th width="25%"> Price </th>
+							<th align="center" width="25%"> Price </th>
 							<th width="15%"> Qty </th>
 							<th width="10%"> A </th>
 						</tr>
@@ -87,32 +54,29 @@
 					?>
 					<tr>
 					<td><?php echo $rowcart1['make']." ".$rowcart1['model']; ?></td>
-					<td align="center"><?php echo "$".$rowcart1['price']; ?></td>
-					<td><input type="number" onchange="updateQTY(this.id,this.value)" 
-					id = "<?php echo $item; ?>" value="<?php echo $_SESSION['qty'][$item] ?>"></td>
-					<td><a href="productHome.php?action=remove&id=<?php echo $item; ?>"><span class="glyphicon glyphicon-trash"></span></a></td>
+<!-- 					<td><input type="number" value="1" name="quantity" min="1" max="5"></td> -->
+					<td><?php echo "$".$rowcart1['price']; ?></td>
+					<td><input type="number" value="<?php echo $_SESSION['qty'][$item]; ?>" name="quantity"  
+					id="<?php echo $item; ?>" onchange="updateQTY(this.id,this.value)"></td>
+					<td><a href="productHome.php?action=remove&id=<?php echo $item; ?>"><span class="glyphicon glyphicon-trash"> </span></a></td>
 					</tr>
+			
 					<?php
-						$item_total += ($rowcart1["price"])*$_SESSION['qty'][$item];
+						$item_total += ($rowcart1["price"])*($_SESSION['qty'][$item]);
 					}
 					?>
 
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="3"> <h4 id="subtot" class="text-center text-danger">
-							Total = $ <?php $_SESSION['total'] = $item_total;
-										echo $item_total; ?>
-							</h4>
-							<td><a href="productHome.php"><button class="btn btn-link">
-							<span class="glyphicon glyphicon-refresh"></span></button> </a>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td colspan="2">
+							<td colspan="4"> <h4 class="text-center">
+							<span id="subtot" class="text-danger">
+							Total: $ <?php $_SESSION['total'] = $item_total;
+								echo $item_total ?> </span> &emsp;
+							<span id="refresh" class="glyphicon glyphicon-refresh">
+							
+							</span></h4>
 							<a href="#" class="btn btn-success btn-block">Checkout</a></td>
-							<td></td>
 						</tr>
 					</tfoot>
 				</table>

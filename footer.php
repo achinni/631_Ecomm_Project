@@ -28,7 +28,7 @@ include 'connection.php';
 				<ul style='list-style-type:none'>
 					<li><h6>MAKES</h6></li>
 					<?php
-						$queryB = "SELECT distinct(`make`) FROM `products` order by `make` limit 7 ";
+						$queryB = "SELECT distinct(`make`) FROM `products` order by `make` ";
 						$resultB = mysqli_query($connection,$queryB);
 						while($row = mysqli_fetch_array($resultB)){
 							$make = $row['make'];
