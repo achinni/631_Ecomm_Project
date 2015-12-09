@@ -27,13 +27,7 @@
 	}
 ?>
 <script type = "text/javascript">
-	// $(".dropdown-menu li a").click(function(){
-// 	  $(this).parents(".dropdown input-group-btn").find('#categoryBtn').text($(this).text);
-// 	  $(this).parents(".dropdown input-group-btn").find('#categoryBtn').val($(this).text);
-// 	});
-	$(".dropdown-menu li a").click(function(){
-		$("#categoryBtn").attr('value','whatever');
-	});
+	
 </script>
 <!-- custom header -->
   <div class='container-fluid' style='margin-bottom:10px'>

@@ -58,7 +58,7 @@ $(document).ready(function(){
 				$resultC = mysqli_query($connection,$queryC);
 				while($row = mysqli_fetch_array($resultC)){
 					$category = $row['category']; ?>
-					<div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value=""><?php echo $category ?></label></div>
+					<div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value='<?php echo $category ?>'><?php echo $category ?></label></div>
 			<?php } ?>
         </div>
       </div>

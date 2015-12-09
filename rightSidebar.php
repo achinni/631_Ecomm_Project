@@ -19,11 +19,12 @@
 			</div>
 		</div>
 		
-		<div class="panel panel-info">
-			
-			<div class="panel-heading">Shopping Cart<form action = "productHome.php?action=empty" method="post">
-			<button type="submit" class="btn btn-link"/>
-			Empty </form> </div>
+		<div class="panel panel-info container-fluid">
+			<div class="panel-heading row">
+			<div class="col-md-9">Shopping Cart</div>
+			<div class="col-md-3"><form action = "productHome.php?action=empty" method="post">
+			<button type="submit" class="btn btn-link"/>Empty </form> </div>
+			</div>
 			<div class="panel-body">
 				
 				<table id="cart" class="table table-hover table-condensed">
