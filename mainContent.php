@@ -39,8 +39,7 @@ include 'connection.php';
 	  		$query= "select * from products where seller='$value'";
 	  }
 	  else{
-		  // $query = "select * from products left outer join reviews on products.pid=reviews.pid order by products.pid" ;
-		  $query = "select * from products";
+		 $query = "select * from products" ;
 	  }
 	  $result = mysqli_query($connection, $query);
 	  $count = mysqli_num_rows($result);
@@ -81,11 +80,9 @@ include 'connection.php';
 				<form id='cartform<?php echo $row['pid']?>' 
 				action="productHome.php?action=add&id=<?php echo $row['pid']; ?>" 
 				method='post'>
-				<div class="panel panel-warning container-fluid">
-				  <div class="panel-heading row">
-				  <div class='col-md-9'><?php echo $row['make']." ".$row['model']; ?> </div>
-				  <div class='col-md-3'>$<?php echo $row['price']; ?> </div>
-				</div>
+				<div class="panel panel-warning">
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")
+				  <span class='text-right'>$".$row['price']."</span>"; ?></div>
 				  <div class="panel-body">
 					  <img src = '<?php echo $row['imagePath'] ?>.jpg' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
@@ -105,13 +102,11 @@ include 'connection.php';
 				?>
 				<div class='col-md-6'> <!-- col-2 starts -->
 				<form id='cartform<?php echo $row['pid']?>' method='post' 
-				action="productHome.php?action=add&code=<?php echo $row['pid']; ?>">
-				<div class="panel panel-warning container-fluid">
-				  <div class="panel-heading row">
-				  <div class='col-md-9'><?php echo $row['make']." ".$row['model']; ?> </div>
-				  <div class='col-md-3'>$<?php echo $row['price']; ?> </div>
-				</div>
-
+				action="productHome.php?action=add&id=<?php echo $row['pid']; ?>">
+				<div class="panel panel-warning">
+				  <div class="panel-heading"><?php echo $row['make']." ".$row['model']." (".$row['year'].")
+				  <span class='text-right'>$".$row['price']."</span>"; ?>
+				 </div>
 				  <div class="panel-body">
 					  <img src = '<?php echo $row['imagePath'] ?>.jpg' width = '100%' alt = '<?php echo $row['pid'] ?>'></img> 
 							 &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp
@@ -124,72 +119,28 @@ include 'connection.php';
 				</div> <!-- col-2 ends -->
 
 				<div id='prod<?php echo $prevItem['pid'] ?>' class='col-md-12 collapse'>
-					<div class="panel panel-warning container-fluid">
-					<div class="panel-heading row">
-					  <div class='col-md-6'><?php echo $prevItem['make']." ".$prevItem['model']; ?> </div>
-					  <div class='col-md-6'>DESCRIPTION</div>
-					</div>
-					<div class='panel-body row'>
-						<div class='col-md-3'>
-							<div class='row'>  CATEGORY </div>
-							<div class='row'>  SUBCATEGORY </div>
-							<div class='row'>  SELLER </div>
-						</div>
-						<div class='col-md-3'>
-							<div class='row'> <?php echo $prevItem['category'];?></div>
-							<div class='row'> <?php echo $prevItem['subcategory'];?></div>
-							<div class='row'> <?php echo $prevItem['seller'];?></div>
-						</div>
-						<div class='col-md-6'><?php echo $prevItem['description'];?></div>
-					</div>
+					<div class="panel panel-warning">
+						<div class="panel-heading"> <?php echo $prevItem['make']." ".$prevItem['model']." (".$prevItem['year'].")" ?> DESCRIPTION</div>
+						<div class="panel-body"> <?php echo $prevItem['description'] ?></div>
 					</div>
 					<div class="panel panel-success">
-						<div class="panel-heading">  <?php echo $prevItem['make']." ".$prevItem['model']; ?>  REVIEWS</div>
-						<div class="panel-body">
-							<?php
-								$queryRev = "select * from reviews where reviews.pid ='".$prevItem['pid']."'";
-								$resultRev = mysqli_query($connection, $queryRev);
-	  							while($rowRev=mysqli_fetch_assoc($resultRev))
-								{
-									echo "- ".$rowRev['comment']."<br>";
-								}
-							?>
-						</div>
+						<div class="panel-heading"> <?php echo $prevItem['pid'] ?> REVIEWS</div>
+						<div class="panel-body"> </div>
 					</div>
 				  </div>
 
 				<div id='prod<?php echo $row['pid'] ?>' class='col-md-12 collapse'>
-					<div class="panel panel-warning container-fluid">
-					<div class="panel-heading row">
-					  <div class='col-md-6'><?php echo $row['make']." ".$row['model']; ?> </div>
-					  <div class='col-md-6'>DESCRIPTION</div>
-					</div>
-					<div class='panel-body row'>
-						<div class='col-md-3'>
-							<div class='row'>  CATEGORY </div>
-							<div class='row'>  SUBCATEGORY </div>
-							<div class='row'>  SELLER </div>
+					<div class="panel panel-warning">
+						<div class="panel-heading"> <?php echo $row['make']." ".$row['model']." (".$row['year'].")" ?> DESCRIPTION</div>
+						<div class="panel-body"> 
+						<?php 
+							echo $row['description'] 
+						?>
 						</div>
-						<div class='col-md-3'>
-							<div class='row'> <?php echo $row['category'];?></div>
-							<div class='row'> <?php echo $row['subcategory'];?></div>
-							<div class='row'> <?php echo $row['seller'];?></div>
-						</div>
-						<div class='col-md-6'><?php echo $row['description'];?></div>
-					</div>
 					</div>
 					<div class="panel panel-success">
-						<div class="panel-heading">   <?php echo $row['make']." ".$row['model']; ?>  REVIEWS</div>
-						<div class="panel-body"> 
-							<?php
-								$queryRev1 = "select * from reviews where reviews.pid ='".$row['pid']."'";
-								$resultRev1 = mysqli_query($connection, $queryRev1);
-	  							while($rowRev1=mysqli_fetch_assoc($resultRev1))
-								{
-									echo "- ".$rowRev1['comment']."<br>";
-								}
-							?>
-						</div>
+						<div class="panel-heading"> <?php echo $row['pid'] ?> REVIEWS</div>
+						<div class="panel-body"> </div>
 					</div>
 				</div>
 				</div> <!-- row ends -->

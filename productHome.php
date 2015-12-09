@@ -19,7 +19,6 @@
 		case "add":
 				$_SESSION['cart_item'][] = $_GET['id'];
 				$_SESSION['qty'][$_GET['id']] = 1;
-				
 		break;
 		case "remove":
 			if(!empty($_SESSION['cart_item'])) {
@@ -38,23 +37,26 @@
 							unset($_SESSION['qty']);
 				}
 			}
+			if(!empty($_SESSION['subtotal'])) {
+				foreach($_SESSION['subtotal'] as $k => $v) {
+						if($k == $_GET['id'])
+							unset($_SESSION['subtotal'][$k]);				
+						if(empty($_SESSION['subtotal']))
+							unset($_SESSION['subtotal']);
+				}
+			}
 		break;
+	
 		case "empty":
  			unset($_SESSION['cart_item']);
  			unset($_SESSION['qty']);
+ 			unset($_SESSION['subtotal']);
  		break;	
 	}
 	}
-
-// if (isset($_POST['remove'])) {
-//     $key=array_search($_GET['name'],$_SESSION['name']);
-//     if($key!==false)
-//     unset($_SESSION['name'][$key]);
-//     $_SESSION["name"] = array_values($_SESSION["name"]);
-// } 
-
 	
 ?>
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -89,23 +91,15 @@
 			var data = JSON.parse(xmlhttp.responseText);
 			for(var i=0;i<data.length;i++) 
 			{
-			//  document.getElementById("subtot").innerHTML = "Total: $ "+data[i].total;
+			  document.getElementById("subtot").innerHTML = "Total = $ "+data[i].total;
 			}
 		}
 	}
 	xmlhttp.open("GET","updateQTY.php?pid="+pid+"&qty="+qty,true);
 	xmlhttp.send();
 	}
-	
-	$(document).ready(function() { /// Wait till page is loaded
-	$('#refresh').click(function(){
-	$('#subtot').load('total.php#total', function() {
-	/// can add another function here
-	});
-	});
-	}); //// End of Wait till page is loaded
+  </script>
 
-</script>
   
 </head>
 <body>

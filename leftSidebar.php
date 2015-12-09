@@ -59,10 +59,8 @@ $(document).ready(function(){
 				$resultC = mysqli_query($connection,$queryC);
 				while($row = mysqli_fetch_array($resultC)){
 					$category = $row['category']; ?>
-
 					<a href='productHome.php?category=<?php echo $category ?>' class='list-group-item'><?php echo $category ?></a>
 					<!-- <div class="checkbox"><label>&nbsp&nbsp<input type="checkbox" value='<?php echo $category ?>'><?php echo $category ?></label></div> -->
-
 			<?php } ?>
         </div>
       </div>

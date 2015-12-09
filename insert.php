@@ -20,13 +20,15 @@
 	$scno = $_POST['scno'];
 	$scexp = $_POST['scexp'];
 	$encPwd = encryptIt( $password );
+	$encPcno = encryptIt($pcno);
+	$encScno = encryptIt($scno);
 	$dob2 = str_replace("/","",$dob1);
 	$dob = substr($dob2,4,4)."-".substr($dob2,0,2)."-".substr($dob2,2,2);
 	
 	$query = "insert into users values
 	('".$email."', '".$user."', '".$encPwd."', '".$fname."', '".$lname."', '".$dob."', 
 	'".$phone."','".$street."', '".$city."', '".$state."', '".$zip."', 
-	'".$pctype."', '".$pcno."', '".$pcexp."','".$sctype."', '".$scno."', '".$scexp."','a')";
+	'".$pctype."', '".$encPcno."', '".$pcexp."','".$sctype."', '".$encScno."', '".$scexp."','a')";
 	$result = mysqli_query($connection, $query);
 	
 	function encryptIt( $q ) {
