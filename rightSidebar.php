@@ -52,10 +52,16 @@
 				</table>
 			</div>
 		</div>
-		
-		<div class="panel panel-info container-fluid">
+
+
+		<div class="panel panel-info container-fluid" id="shopkart">
+			
 			<div class="panel-heading row">
-			<div class="col-md-9">Shopping Cart</div>
+			<div class="col-md-9">
+			<button type="submit" id="btnkart" class="btn btn-link">
+			<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (Click to refresh)</button>
+			</div>
+
 			<div class="col-md-3"><form action = "productHome.php?action=empty" method="post">
 			<button type="submit" class="btn btn-link"/>Empty </form> </div>
 			</div>
